@@ -1,0 +1,28 @@
+{
+  "name": "AdPulse Digital",
+  "legalName": "Adpulse Digital Pvt Ltd",
+  "tagline": "AI-Powered Growth",
+  "description": "A growth-focused digital and AI marketing agency helping businesses scale with performance marketing, social media and high-converting websites, powered by data and AI.",
+  "url": "https://www.adpulsedigital.in",
+  "logo": {
+    "default": "/brand/adpulse-logo.svg",
+    "reversed": "/brand/adpulse-logo-reversed.svg",
+    "alt": "AdPulse – AI-Powered Growth"
+  },
+  "contact": {
+    "phone": "+91 90000 12345",
+    "whatsapp": "+919000012345",
+    "email": "hello@adpulse.in",
+    "address": "Madhapur, Hyderabad - 500081, Telangana, India.",
+    "hours": "Mon - Sat: 9:00 AM - 6:00 PM"
+  },
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "Services", "href": "/services" },
+    { "label": "Industries", "href": "/industries" },
+    { "label": "Case Studies", "href": "/case-studies" },
+    { "label": "About", "href": "/about" },
+    { "label": "Insights", "href": "/insights" },
+    { "label": "Contact", "href": "/contact" }
+  ]
+}
