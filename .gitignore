@@ -48,3 +48,8 @@ next-env.d.ts
 .vscode/*
 !.vscode/extensions.json
 Thumbs.db
+
+# local CMS data (SQLite database + uploaded media)
+/adpulse.db*
+/media/
+!.env.example

@@ -2,8 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSiteSettings } from "@/lib/content";
 
-// Intrinsic aspect ratio of the supplied logo artwork (676 x 175).
+// Intrinsic aspect ratio of the supplied logo artwork (676 x 175), used
+// when the uploaded file has no stored dimensions (SVG).
 const RATIO = 676 / 175;
+
+// Shipped copies of the supplied logo, used only if none is set in the CMS.
+const FALLBACK = { default: "/brand/adpulse-logo.svg", reversed: "/brand/adpulse-logo-reversed.svg" };
 
 type LogoProps = {
   variant?: "default" | "reversed";
@@ -18,15 +22,18 @@ export async function Logo({
   priority = false,
   className = "",
 }: LogoProps) {
-  const { logo, name } = await getSiteSettings();
+  const site = await getSiteSettings();
+  const file = variant === "reversed" ? site.logoReversed : site.logo;
+  const ratio = file?.width && file.height ? file.width / file.height : RATIO;
   return (
-    <Link href="/" aria-label={`${name} home`} className={className}>
+    <Link href="/" aria-label={`${site.name} home`} className={className}>
       <Image
-        src={logo[variant]}
-        alt={logo.alt}
-        width={Math.round(height * RATIO)}
+        src={file?.url ?? FALLBACK[variant]}
+        alt={file?.alt ?? site.name}
+        width={Math.round(height * ratio)}
         height={height}
         priority={priority}
+        unoptimized={!file || file.mimeType === "image/svg+xml"}
       />
     </Link>
   );

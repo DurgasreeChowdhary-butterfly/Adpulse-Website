@@ -14,9 +14,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteSettings();
   return {
     metadataBase: new URL(site.url),
-    title: { default: `${site.name} | ${site.tagline}`, template: `%s | ${site.name}` },
-    description: site.description,
-    openGraph: { siteName: site.name, type: "website", locale: "en_IN" },
+    title: { default: site.seo.title, template: `%s | ${site.name}` },
+    description: site.seo.description,
+    // Without a CMS favicon, Next.js serves app/icon.png + app/favicon.ico.
+    icons: site.favicon ? { icon: site.favicon.url, apple: site.favicon.url } : undefined,
+    openGraph: {
+      siteName: site.name,
+      type: "website",
+      locale: "en_IN",
+      images: site.seo.image ? [{ url: site.seo.image.url, alt: site.seo.image.alt }] : undefined,
+    },
   };
 }
 
