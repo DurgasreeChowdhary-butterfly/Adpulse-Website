@@ -1,0 +1,55 @@
+/* Styles for pages added in the production build (insights, articles, testimonials).
+   They reuse the design tokens defined in globals.css. */
+
+/* page fade between routes */
+.page-enter{animation:vtIn .45s var(--ease) both}
+@media(prefers-reduced-motion:reduce){.page-enter{animation:none}}
+
+/* ---------- Insights list ---------- */
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}
+.post{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid rgba(1,40,109,.42);border-radius:26px;padding:16px 16px 22px;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .35s}
+.post:hover{transform:translateY(-4px);border-color:var(--navy);box-shadow:0 26px 48px -34px rgba(1,40,109,.45)}
+.post-img{position:relative;display:block;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--navy-900)}
+.post-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.post:hover .post-img img{transform:scale(1.05)}
+.post-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);padding:6px 6px 0}
+.post-meta span:first-child{color:var(--orange);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.post h3{font-size:clamp(19px,1.4vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.3;color:var(--ink);padding:0 6px}
+.post p{font-size:14.5px;color:var(--ink-2);padding:0 6px}
+.post .go{margin-top:auto;padding:6px 6px 0;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--navy)}
+.post .go svg{width:15px;height:15px;transition:transform .4s var(--ease)}
+.post:hover .go{color:var(--orange)}
+.post:hover .go svg{transform:translateX(5px)}
+.sample-note{margin-top:var(--s-3);font-size:13px;color:var(--ink-3)}
+@media(max-width:1000px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.posts{grid-template-columns:1fr}}
+
+/* ---------- Article ---------- */
+.article{max-width:760px}
+.article .cover{margin:0 0 var(--s-5);border-radius:22px;overflow:hidden;aspect-ratio:16/9;position:relative;background:var(--navy-900)}
+.article .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.article p{font-size:18px;line-height:1.75;color:var(--ink-2);margin-bottom:var(--s-3)}
+.article p:first-of-type{font-size:20px;color:var(--ink)}
+.article .back{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s-4);font-weight:600;color:var(--navy)}
+.article .back svg{width:16px;height:16px;transform:rotate(180deg)}
+
+/* ---------- Testimonials ---------- */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-3)}
+.quote{margin:0;background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:14px;align-content:start}
+.quote .stars{display:flex;gap:2px;color:var(--orange)}
+.quote .stars svg{width:15px;height:15px}
+.quote blockquote{margin:0;font-size:17px;line-height:1.6;color:var(--ink)}
+.quote figcaption b{display:block;font-weight:600}
+.quote figcaption span{font-size:13.5px;color:var(--ink-2)}
+@media(max-width:1000px){.quotes{grid-template-columns:1fr}}
+
+/* ---------- 404 ---------- */
+.nf{min-height:70vh;display:grid;align-content:center;gap:var(--s-3)}
+
+/* ---------- Forms: honeypot, form-level error, consent line ---------- */
+/* Honeypot field: off-screen for people and screen readers; bots fill it in. */
+.hp{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+form.audit .err{margin:0;font-size:13.5px;color:#C3301A}
+.consent{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink-3)}
+.consent a{color:inherit;text-decoration:underline}
+.consent.dark{margin-top:8px;color:var(--d-text)}

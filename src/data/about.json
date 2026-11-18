@@ -1,0 +1,57 @@
+{
+  "eyebrow": "About Adpulse",
+  "location": "Madhapur, Hyderabad",
+  "title": "A growth team for brands that are | _done guessing._",
+  "image": "/images/about-team.jpg",
+  "imageAlt": "Adpulse strategists reviewing a campaign together",
+  "imageBadge": {
+    "label": "Client retention",
+    "value": "98%",
+    "note": "of clients renew year on year"
+  },
+  "description": "We're strategists, designers, engineers and media buyers in one office. We pair clear strategy with creative that gets noticed, then use data and AI to decide where each rupee goes.",
+  "beliefs": [
+    {
+      "title": "Measured like an investment.",
+      "text": "If we can't show what it returned, we change it."
+    },
+    {
+      "title": "Built to compound.",
+      "text": "Better leads, lower acquisition cost and a brand people remember."
+    },
+    {
+      "title": "One accountable team.",
+      "text": "No hand-offs between agencies."
+    }
+  ],
+  "stats": [
+    {
+      "value": 98,
+      "suffix": "%",
+      "label": "Client retention"
+    },
+    {
+      "value": 50,
+      "suffix": "+",
+      "label": "Brands grown"
+    },
+    {
+      "value": 8,
+      "suffix": "",
+      "label": "Services in-house"
+    },
+    {
+      "value": 4.9,
+      "suffix": "/5",
+      "label": "Client rating",
+      "decimals": 1
+    }
+  ],
+  "page": {
+    "eyebrow": "About us",
+    "title": "Strategy, creative and AI, | working as one team.",
+    "description": "Adpulse is a digital growth agency in Madhapur, Hyderabad. Here's who we are, what we believe and why clients stay.",
+    "metaTitle": "About",
+    "metaDescription": ""
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "header": {
+    "items": [
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Services",
+        "href": "/services",
+        "dropdown": "services"
+      },
+      {
+        "label": "Case Studies",
+        "href": "/case-studies"
+      },
+      {
+        "label": "Insights",
+        "href": "/insights"
+      }
+    ],
+    "cta": {
+      "label": "Get a free audit",
+      "action": "audit"
+    },
+    "mobileCta": {
+      "label": "Get a free growth audit",
+      "action": "audit"
+    },
+    "dropdown": {
+      "allLabel": "View all services",
+      "allHref": "/services",
+      "hint": "Not sure where to start?",
+      "ctaLabel": "Get a free audit"
+    },
+    "homeLabel": "Home"
+  },
+  "footer": {
+    "about": "AI-powered digital marketing for brands that want measurable, lasting growth.",
+    "servicesTitle": "Services",
+    "companyTitle": "Company",
+    "contactTitle": "Contact",
+    "companyLinks": [
+      {
+        "label": "About us",
+        "href": "/about"
+      },
+      {
+        "label": "Case studies",
+        "href": "/case-studies"
+      },
+      {
+        "label": "Industries",
+        "href": "/industries"
+      },
+      {
+        "label": "Why Adpulse",
+        "href": "/about#why"
+      },
+      {
+        "label": "Insights",
+        "href": "/insights"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact"
+      }
+    ],
+    "copyright": "© {year} Adpulse Digital. All rights reserved."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "caseStudies": "Case Studies",
+    "industries": "Industries",
+    "insights": "Insights"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "section": {
+    "eyebrow": "Our clients",
+    "line": "Trusted by **50+ growing brands** across Hyderabad and India.",
+    "rating": {
+      "value": "4.9",
+      "label": "Average Google rating"
+    },
+    "placeholderNote": "Dashed tiles are placeholders for client logos."
+  },
+  "items": [
+    {
+      "name": "KMS",
+      "logo": null,
+      "website": "",
+      "style": "wordmark"
+    },
+    {
+      "name": "Kapleshwar Optics",
+      "logo": null,
+      "website": "",
+      "style": "wordmark-alt"
+    },
+    {
+      "name": "Client logo",
+      "logo": null,
+      "website": "",
+      "style": "placeholder"
+    },
+    {
+      "name": "Client logo",
+      "logo": null,
+      "website": "",
+      "style": "placeholder"
+    },
+    {
+      "name": "Client logo",
+      "logo": null,
+      "website": "",
+      "style": "placeholder"
+    }
+  ]
+}

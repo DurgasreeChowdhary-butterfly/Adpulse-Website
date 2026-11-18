@@ -1,0 +1,150 @@
+/* Admin panel. Uses the site tokens from globals.css; every class is prefixed `adm-`. */
+.adm{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh;background:var(--mist);color:var(--ink);font-size:14.5px}
+.adm-side{position:sticky;top:0;height:100vh;overflow:auto;background:var(--night);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:18px}
+.adm-brand{display:flex;align-items:center;gap:10px;padding:4px 10px 14px;border-bottom:1px solid var(--d-line)}
+.adm-brand .brand{width:120px;height:33px;color:#fff}
+.adm-brand span{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
+.adm-nav{display:grid;gap:2px}
+.adm-nav a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;color:var(--d-text);font-weight:500;transition:background .2s,color .2s}
+.adm-nav a svg{width:17px;height:17px;flex:none}
+.adm-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.adm-nav a.on{background:rgba(252,88,12,.16);color:#fff}
+.adm-nav a.on svg{color:var(--orange)}
+.adm-side .adm-foot{margin-top:auto;font-size:12.5px;color:var(--d-text);padding:0 10px;display:grid;gap:8px}
+.adm-side .adm-foot a{color:#fff;text-decoration:underline}
+.adm-main{padding:28px clamp(18px,3vw,44px) 80px;min-width:0}
+.adm-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.adm-top h1{font-size:28px;font-weight:600;letter-spacing:-.02em}
+.adm-top p{color:var(--ink-2);margin-top:4px;max-width:70ch}
+.adm-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.adm-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 14px;font-weight:600;font-size:14px;transition:border-color .2s,background .2s}
+.adm-btn:hover{border-color:var(--ink-3)}
+.adm-btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+.adm-btn.primary:hover{background:var(--orange-hi)}
+.adm-btn:disabled{opacity:.5;cursor:not-allowed}
+.adm-btn.sm{padding:5px 9px;font-size:12.5px;border-radius:8px}
+.adm-btn.danger{color:#B4261A}
+.adm-status{font-size:13px;color:var(--ink-2)}
+.adm-status.ok{color:var(--good)}.adm-status.err{color:#B4261A}
+.adm-note{background:#FFF6EE;border:1px solid #FFD9BE;color:#7A3A0A;border-radius:12px;padding:12px 14px;margin-bottom:18px;font-size:13.5px}
+.adm-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.adm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.adm-tile{display:grid;gap:6px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;transition:border-color .2s,transform .3s var(--ease)}
+.adm-tile:hover{border-color:var(--navy);transform:translateY(-2px)}
+.adm-tile svg{width:22px;height:22px;color:var(--orange)}
+.adm-tile b{font-size:16px}
+.adm-tile span{color:var(--ink-2);font-size:13px}
+.adm-tile em{font-style:normal;font-size:12px;font-weight:600;color:var(--navy)}
+/* editor */
+.fe-group{display:grid;gap:14px}
+.fe-obj{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;display:grid;gap:14px}
+.fe-obj>.fe-legend{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+.fe-field{display:grid;gap:6px}
+.fe-field>label{font-size:13px;font-weight:600;color:var(--ink)}
+.fe-field>label small{font-weight:400;color:var(--ink-3);margin-left:6px}
+.fe-field input[type=text],.fe-field input[type=number],.fe-field textarea,.fe-field select{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;color:var(--ink);width:100%}
+.fe-field textarea{min-height:76px;resize:vertical;line-height:1.5}
+.fe-field input:focus,.fe-field textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(252,88,12,.12)}
+.fe-check{display:flex;align-items:center;gap:8px;font-weight:600}
+.fe-arr{display:grid;gap:10px}
+.fe-item{border:1px solid var(--line);border-radius:12px;background:var(--mist)}
+.fe-item>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;font-weight:600}
+.fe-item>summary::-webkit-details-marker{display:none}
+.fe-item>summary .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.fe-item>summary .ctl{display:flex;gap:4px;flex:none}
+.fe-item>.fe-body{padding:0 12px 12px}
+.fe-item>.fe-body>.fe-obj{background:#fff}
+.fe-prim{display:flex;gap:6px;align-items:center}
+.fe-prim>input{flex:1 1 180px;min-width:0}
+.fe-img{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:start}
+.fe-img .pv{width:96px;height:72px;border-radius:8px;background:var(--mist) center/cover no-repeat;border:1px solid var(--line)}
+.fe-img .row{display:flex;gap:6px;flex-wrap:wrap}
+.fe-hint{font-size:12px;color:var(--ink-3)}
+/* form grids never grow past their container (textareas/inputs have a wide intrinsic size) */
+.fe-group,.fe-obj,.fe-field,.fe-arr{grid-template-columns:minmax(0,1fr)}
+.fe-field input,.fe-field textarea,.fe-field select{min-width:0;max-width:100%}
+/* media */
+.md-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.md-item{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid}
+.md-item .pv{aspect-ratio:4/3;background:var(--mist) center/cover no-repeat}
+.md-item .meta{padding:10px;display:grid;gap:6px;font-size:12.5px;word-break:break-all}
+.md-alt{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;width:100%;min-width:0;word-break:normal}
+.md-alt:focus{outline:none;border-color:var(--orange)}
+.md-act{display:flex;gap:4px;flex-wrap:wrap}
+.md-drop{display:block;cursor:pointer;border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;background:#fff;margin-bottom:16px}
+.md-drop.over{border-color:var(--orange);background:#FFF6EE}
+/* sidebar shell: on desktop the bar and drawer are transparent wrappers */
+.adm-bar{display:block}
+.adm-drawer{display:contents}
+.adm-toggle{display:none}
+@media(max-width:860px){
+  .adm{grid-template-columns:minmax(0,1fr)}
+  /* sidebar becomes a compact top bar with a drawer */
+  .adm-side{position:sticky;top:0;z-index:30;height:auto;overflow:visible;padding:10px 16px;gap:0}
+  .adm-bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .adm-brand{padding:0;border-bottom:0}
+  .adm-brand .brand{width:104px;height:29px}
+  .adm-toggle{display:inline-flex;align-items:center;border:1px solid var(--d-line);background:rgba(255,255,255,.06);color:#fff;border-radius:10px;padding:8px 14px;font-weight:600;font-size:14px}
+  .adm-drawer{display:none}
+  .adm-side[data-open] .adm-drawer{display:grid;gap:16px;padding-top:12px;margin-top:10px;border-top:1px solid var(--d-line);max-height:calc(100dvh - 70px);overflow:auto}
+  .adm-side .adm-foot{margin-top:0;padding-bottom:6px}
+  .adm-main{padding:20px 16px 64px}
+  .adm-top h1{font-size:24px}
+  /* editor: tighter nesting so deep fields keep usable width */
+  .fe-obj{padding:12px;gap:12px}
+  .fe-item>summary{flex-wrap:wrap;padding:10px}
+  .fe-item>summary .t{flex:1 1 140px}
+  .fe-item>.fe-body{padding:0 8px 8px}
+  .fe-prim{flex-wrap:wrap}
+  .fe-img{grid-template-columns:72px minmax(0,1fr)}
+  .fe-img .pv{width:72px;height:54px}
+  .fe-field input[type=text],.fe-field input[type=number],.fe-field textarea,.fe-field select{font-size:16px}
+}
+
+/* ---------- login ---------- */
+.adm-login{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:32px 16px;background:radial-gradient(900px 600px at 85% -10%,rgba(22,62,150,.55),transparent 65%),radial-gradient(700px 500px at 10% 110%,rgba(252,88,12,.16),transparent 65%),var(--night);color:var(--ink);font-size:14.5px}
+.adm-login-box{width:min(400px,100%);display:grid;gap:22px}
+.adm-login-brand{display:flex;align-items:center;justify-content:center;gap:12px;color:#fff}
+.adm-login-brand .brand{width:150px;height:41px}
+.adm-login-brand span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);padding-left:12px;border-left:1px solid var(--d-line)}
+.adm-login-card{background:#fff;border-radius:20px;padding:32px 28px;box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+.adm-login-card h1{font-size:24px;font-weight:600;letter-spacing:-.02em}
+.adm-login-card>p{color:var(--ink-2);margin-top:6px}
+.adm-login-form{display:grid;gap:8px;margin-top:22px}
+.adm-login-form label{font-size:13px;font-weight:600}
+.adm-login-pw{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.adm-login-pw:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px rgba(252,88,12,.12)}
+.adm-login-pw input{flex:1;min-width:0;font:inherit;font-size:16px;border:0;padding:11px 12px;background:#fff;color:var(--ink);outline:none}
+.adm-login-pw button{border:0;border-left:1px solid var(--line);background:var(--mist);padding:0 14px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.adm-login-submit{justify-content:center;margin-top:12px;padding:12px 14px;font-size:15px}
+.adm-login-msg{border-radius:10px;padding:10px 12px;font-size:13.5px;margin-bottom:8px}
+.adm-login-msg.err{background:#FDECEA;color:#9B1C12;border:1px solid #F6C9C3}
+.adm-login-msg.ok{background:#E8F7F0;color:#126B4B;border:1px solid #BFE8D6}
+.adm-login-msg code{font-size:12.5px}
+.adm-login-back{justify-self:center;color:var(--d-text);font-size:13.5px}
+.adm-login-back:hover{color:#fff}
+.adm-side .adm-foot form{margin:0}
+.adm-logout{border:0;background:none;padding:0;color:#fff;text-decoration:underline;font:inherit;font-size:12.5px;cursor:pointer}
+.adm-logout:hover{color:var(--orange)}
+
+/* ---------- enquiries ---------- */
+.enq-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.enq-filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.enq-filters input[type=search]{flex:1 1 260px;min-width:0}
+.enq-filters input,.enq-filters select{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink)}
+.enq-filters label{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2)}
+.enq-card{padding:0;overflow:hidden}
+.enq-count{padding:12px 16px;font-size:13px;color:var(--ink-2);border-bottom:1px solid var(--line)}
+.enq-empty{padding:28px 16px;color:var(--ink-3)}
+.enq-scroll{overflow-x:auto}
+.enq-table{width:100%;min-width:1040px;border-collapse:collapse;font-size:13.5px}
+.enq-table th{text-align:left;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);padding:10px 12px;background:var(--mist);white-space:nowrap}
+.enq-table td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;max-width:240px;overflow-wrap:break-word}
+.enq-table td.nowrap{white-space:nowrap;overflow-wrap:normal}
+.enq-table a{color:var(--navy);text-decoration:underline}
+.enq-table select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:5px 8px;background:#fff}
+.enq-table tr.st-new td:first-child{box-shadow:inset 3px 0 0 var(--orange)}
+.enq-table tr.st-closed{color:var(--ink-3)}
+.enq-table .ntf-failed,.enq-table .ntf-not_configured{color:#B4261A;font-weight:600}
+.enq-table .ntf-sent{color:var(--good)}
+@media(max-width:860px){.enq-filters label{flex:1 1 140px}.enq-filters label input{flex:1;min-width:0}}

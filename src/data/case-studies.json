@@ -1,0 +1,259 @@
+{
+  "section": {
+    "eyebrow": "Case studies",
+    "title": "We don't just promise results. | We show them.",
+    "description": "The challenge each client brought us, what we changed, and what happened to their numbers.",
+    "sampleNote": "Sample case studies for layout. Replace with real client results before launch.",
+    "challengeLabel": "Challenge",
+    "solutionLabel": "What we did"
+  },
+  "page": {
+    "eyebrow": "Case studies",
+    "title": "Proof, not promises. | Here's what changed for our clients.",
+    "description": "Every project starts with a clear problem and ends with numbers. Filter by service to see the work closest to yours.",
+    "metaTitle": "Case Studies",
+    "metaDescription": ""
+  },
+  "categories": [
+    {
+      "key": "all",
+      "label": "All work"
+    },
+    {
+      "key": "pm",
+      "label": "Performance"
+    },
+    {
+      "key": "seo",
+      "label": "SEO & GEO"
+    },
+    {
+      "key": "web",
+      "label": "Websites"
+    }
+  ],
+  "items": [
+    {
+      "slug": "maritime-college-fills-its-admission-pipeline",
+      "title": "Maritime college fills its admission pipeline",
+      "client": "",
+      "industry": "Education",
+      "category": "pm",
+      "services": [],
+      "challenge": "Lead costs were rising and few enquiries visited campus.",
+      "solution": "Rebuilt search and Meta campaigns around course intent, with instant WhatsApp follow-up.",
+      "result": {
+        "value": "1,500+",
+        "label": "qualified leads in 60 days"
+      },
+      "metrics": [
+        {
+          "value": "−34%",
+          "label": "Cost per lead"
+        },
+        {
+          "value": "22%",
+          "label": "Lead-to-visit"
+        },
+        {
+          "value": "60",
+          "label": "Days"
+        }
+      ],
+      "visual": "bars",
+      "image": null,
+      "imageAlt": "",
+      "gallery": [],
+      "featured": false,
+      "showOnHome": true,
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "optical-chain-wins-local-search",
+      "title": "Optical chain wins local search",
+      "client": "",
+      "industry": "Retail · Optical",
+      "category": "seo",
+      "services": [],
+      "challenge": "Six stores were hidden on Google Maps behind bigger chains.",
+      "solution": "Optimised every Google Business Profile, rebuilt location pages and ran a review drive.",
+      "result": {
+        "value": "270+",
+        "label": "store walk-ins in 45 days"
+      },
+      "metrics": [
+        {
+          "value": "Top 3",
+          "label": "Map ranking"
+        },
+        {
+          "value": "+190%",
+          "label": "Direction requests"
+        },
+        {
+          "value": "4.8★",
+          "label": "Avg rating"
+        }
+      ],
+      "visual": "map",
+      "image": null,
+      "imageAlt": "",
+      "gallery": [],
+      "featured": false,
+      "showOnHome": true,
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "skincare-brand-scales-profitably",
+      "title": "Skincare brand scales profitably",
+      "client": "",
+      "industry": "E-commerce · D2C",
+      "category": "pm",
+      "services": [],
+      "challenge": "Sales had plateaued and each new customer cost more.",
+      "solution": "Moved to Performance Max with a clean product feed and fresh creative every two weeks.",
+      "result": {
+        "value": "4.6x",
+        "label": "return on ad spend"
+      },
+      "metrics": [
+        {
+          "value": "+212%",
+          "label": "Revenue"
+        },
+        {
+          "value": "−21%",
+          "label": "Acquisition cost"
+        },
+        {
+          "value": "2 wks",
+          "label": "Creative cycle"
+        }
+      ],
+      "visual": "line",
+      "image": null,
+      "imageAlt": "",
+      "gallery": [],
+      "featured": false,
+      "showOnHome": true,
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "saas-startup-builds-a-content-engine",
+      "title": "SaaS startup builds a content engine",
+      "client": "",
+      "industry": "IT & SaaS",
+      "category": "seo",
+      "services": [],
+      "challenge": "Organic search sent almost no demo requests.",
+      "solution": "Keyword clusters, 40 in-depth articles and technical fixes.",
+      "result": {
+        "value": "+340%",
+        "label": "organic traffic in 8 months"
+      },
+      "metrics": [
+        {
+          "value": "1,200+",
+          "label": "Ranking keywords"
+        },
+        {
+          "value": "+85%",
+          "label": "Demo signups"
+        },
+        {
+          "value": "40",
+          "label": "Articles"
+        }
+      ],
+      "visual": "line",
+      "image": null,
+      "imageAlt": "",
+      "gallery": [],
+      "featured": false,
+      "showOnHome": true,
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "developer-rebuilds-for-mobile-buyers",
+      "title": "Developer rebuilds for mobile buyers",
+      "client": "",
+      "industry": "Real Estate",
+      "category": "web",
+      "services": [],
+      "challenge": "Most visitors were on phones, and the old site lost them.",
+      "solution": "A mobile-first site with project pages, tour links and a two-step enquiry form.",
+      "result": {
+        "value": "3.1x",
+        "label": "more website enquiries"
+      },
+      "metrics": [
+        {
+          "value": "1.4s",
+          "label": "Load time"
+        },
+        {
+          "value": "+62%",
+          "label": "Form completion"
+        },
+        {
+          "value": "−31%",
+          "label": "Bounce rate"
+        }
+      ],
+      "visual": "phone",
+      "image": null,
+      "imageAlt": "",
+      "gallery": [],
+      "featured": false,
+      "showOnHome": true,
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "clinic-moves-bookings-online",
+      "title": "Clinic moves bookings online",
+      "client": "",
+      "industry": "Healthcare",
+      "category": "web",
+      "services": [],
+      "challenge": "Appointments came only by phone, and peak-hour calls were missed.",
+      "solution": "Doctor profiles, online booking and local SEO pages for every department.",
+      "result": {
+        "value": "+58%",
+        "label": "online appointment bookings"
+      },
+      "metrics": [
+        {
+          "value": "+44%",
+          "label": "Calls from site"
+        },
+        {
+          "value": "−31%",
+          "label": "Bounce rate"
+        },
+        {
+          "value": "12",
+          "label": "Departments"
+        }
+      ],
+      "visual": "bars",
+      "image": null,
+      "imageAlt": "",
+      "gallery": [],
+      "featured": false,
+      "showOnHome": true,
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    }
+  ]
+}

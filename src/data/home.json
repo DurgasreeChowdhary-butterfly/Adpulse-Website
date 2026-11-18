@@ -1,0 +1,148 @@
+{
+  "hero": {
+    "eyebrow": "AI-powered digital growth agency",
+    "heading": "Fueling business *growth* through intelligent digital marketing.",
+    "description": "Adpulse plans, creates and runs your marketing as one team, using AI and live data so every rupee you spend is working towards real leads and revenue.",
+    "primaryCta": {
+      "label": "Get a free growth audit",
+      "action": "audit"
+    },
+    "secondaryCta": {
+      "label": "See our results",
+      "href": "/case-studies"
+    },
+    "trust": [
+      {
+        "value": "50+",
+        "label": "brands grown"
+      },
+      {
+        "value": "4.9/5",
+        "label": "client rating"
+      },
+      {
+        "value": "98%",
+        "label": "retention"
+      }
+    ],
+    "visual": {
+      "image": "/images/hero-team-meeting.jpg",
+      "imageAlt": "The Adpulse team in a strategy session around campaign dashboards",
+      "liveLabel": "Live campaign",
+      "revenueLabel": "Revenue from campaigns · 30 days",
+      "revenueValue": "₹38.4L",
+      "revenueChange": "+64%",
+      "roas": {
+        "label": "Return on ad spend",
+        "value": "3.2x",
+        "note": "up from 1.4x in 90 days"
+      },
+      "ctr": {
+        "label": "Ad creative CTR",
+        "value": "4.8%",
+        "adBrand": "Your brand",
+        "adTag": "Sponsored",
+        "adText": "Free consultation",
+        "adCta": "Book now"
+      }
+    }
+  },
+  "differentiators": {
+    "eyebrow": "What makes Adpulse different",
+    "title": "Five things you get with us that most agencies don't offer.",
+    "description": "Built around the questions business owners ask us most: who is working on my account, what are they changing, and what is it returning?",
+    "feature": {
+      "tag": "01 · AI on your account",
+      "title": "AI reviews your campaigns every day, and a specialist approves every change.",
+      "text": "Our tools catch wasted spend and new opportunities early, so your budget moves to what's working before the month is over.",
+      "actions": [
+        {
+          "icon": "i-pause",
+          "text": "Paused 14 keywords with no sales",
+          "time": "2m"
+        },
+        {
+          "icon": "i-up",
+          "text": "Raised bids on top-converting searches",
+          "time": "18m"
+        },
+        {
+          "icon": "i-shuffle",
+          "text": "Moved 12% of budget from Display to Search",
+          "time": "1h"
+        }
+      ]
+    },
+    "points": [
+      {
+        "icon": "i-layers",
+        "title": "One team, full funnel",
+        "text": "Ads, SEO, website and social are run from the same plan."
+      },
+      {
+        "icon": "i-eye",
+        "title": "Live, open reporting",
+        "text": "You see the dashboard we use, plus a weekly review call."
+      },
+      {
+        "icon": "i-badge",
+        "title": "Certified specialists",
+        "text": "Google, Meta and analytics experts handle your account in-house."
+      },
+      {
+        "icon": "i-target",
+        "title": "Revenue first",
+        "text": "We plan around cost per lead and sales, not impressions."
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why choose us",
+    "title": "Why brands ==stay== with Adpulse year after year.",
+    "description": "Six principles behind every account we run.",
+    "cta": {
+      "label": "Start with a free audit",
+      "action": "audit"
+    },
+    "proof": {
+      "value": "98",
+      "suffix": "%",
+      "label": "of clients renew with us every year"
+    },
+    "principles": [
+      {
+        "title": "Strategy-first thinking",
+        "description": "We start with your margins, customers and competitors. Channels come after the plan."
+      },
+      {
+        "title": "Creative that converts",
+        "description": "Designers and writers work from performance data, so creative is judged by what it sells."
+      },
+      {
+        "title": "Data-driven decisions",
+        "description": "GA4, CRM data and call tracking show which campaigns make money. Budget follows that evidence."
+      },
+      {
+        "title": "Technology and AI",
+        "description": "AI tools monitor accounts and automate follow-ups. Specialists stay in charge of every decision."
+      },
+      {
+        "title": "Transparent performance",
+        "description": "A live dashboard, weekly calls and plain-language reports. No hidden fees."
+      },
+      {
+        "title": "End-to-end execution",
+        "description": "Strategy, creative, websites, media and automation from one accountable team."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Let's talk growth",
+    "title": "Ready to turn attention | into *growth*?",
+    "description": "Get a free audit of your ads, website and search presence. A strategist will send you a clear, prioritised action list within 48 hours.",
+    "button": {
+      "label": "Book your free growth audit",
+      "action": "audit"
+    }
+  }
+}

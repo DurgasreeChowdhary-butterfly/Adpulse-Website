@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "url": "/images/service-performance-marketing.jpg",
+      "alt": "Campaign performance dashboard on a monitor"
+    },
+    {
+      "url": "/images/service-seo-geo.jpg",
+      "alt": "Analytics dashboard showing organic growth"
+    },
+    {
+      "url": "/images/service-social-media.jpg",
+      "alt": "Adpulse team reviewing social media creative on a large screen"
+    },
+    {
+      "url": "/images/service-creative-solutions.jpg",
+      "alt": "Designers working on a brand moodboard and video edit"
+    },
+    {
+      "url": "/images/service-influencer-marketing.jpg",
+      "alt": "Creator filming product content while the team reviews results"
+    },
+    {
+      "url": "/images/service-websites.jpg",
+      "alt": "Responsive website shown on a desktop, laptop and phone"
+    },
+    {
+      "url": "/images/service-ai-automation.jpg",
+      "alt": "Marketing automation workflow with WhatsApp and email steps"
+    },
+    {
+      "url": "/images/service-reputation-management.jpg",
+      "alt": "Reputation dashboard with reviews, ratings and sentiment"
+    },
+    {
+      "url": "/images/hero-team-meeting.jpg",
+      "alt": "The Adpulse team in a strategy session around campaign dashboards"
+    },
+    {
+      "url": "/images/about-team.jpg",
+      "alt": "Adpulse strategists reviewing a campaign together"
+    }
+  ]
+}

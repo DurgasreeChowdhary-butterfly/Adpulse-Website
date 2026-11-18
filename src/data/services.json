@@ -1,0 +1,405 @@
+{
+  "section": {
+    "eyebrow": "Services",
+    "count": "08",
+    "headingLead": "We help brands",
+    "typedPhrases": [
+      "grow.",
+      "get noticed.",
+      "generate leads.",
+      "scale smarter."
+    ],
+    "description": "Eight services, one team, one growth plan. Start with one service or run your whole funnel with us, with a dedicated growth manager and a live dashboard.",
+    "cardLinkLabel": "Learn more"
+  },
+  "overviewPage": {
+    "eyebrow": "Services",
+    "title": "Everything your growth needs, | under one roof.",
+    "description": "Pick one service or run your whole funnel with us. Every engagement comes with a dedicated growth manager, a live dashboard and a weekly review call.",
+    "metaTitle": "Services",
+    "metaDescription": ""
+  },
+  "detailPage": {
+    "primaryCta": {
+      "label": "Get a free audit",
+      "action": "audit"
+    },
+    "secondaryCta": {
+      "label": "See our results",
+      "href": "/case-studies"
+    },
+    "includedEyebrow": "What's included",
+    "includedTitle": "Everything we handle for you.",
+    "includedSuffix": "Pick the full scope or just the parts you need.",
+    "processEyebrow": "How we work",
+    "processTitle": "Four steps, and you see every one of them.",
+    "processDescription": "The same process runs on every account, so you always know what's happening and what comes next.",
+    "process": [
+      {
+        "title": "Audit",
+        "description": "We look at where you are today: your accounts, website, competitors and numbers."
+      },
+      {
+        "title": "Plan",
+        "description": "You get a clear plan with goals, budget and timelines before anything goes live."
+      },
+      {
+        "title": "Launch",
+        "description": "Our team builds and launches, and you can see everything in your dashboard."
+      },
+      {
+        "title": "Improve",
+        "description": "We review results every week and keep changing what isn't working."
+      }
+    ],
+    "relatedEyebrow": "Other services",
+    "relatedTitle": "Works even better together.",
+    "relatedLinkLabel": "View all services"
+  },
+  "items": [
+    {
+      "slug": "performance-marketing",
+      "title": "Performance Marketing",
+      "icon": "s-perf",
+      "summary": "Google, Meta and LinkedIn campaigns planned around your cost per lead, then optimised daily.",
+      "lead": "Paid campaigns on Google, Meta and LinkedIn, planned around what a customer is worth to you. We check them every day and move budget to whatever is bringing in leads and sales.",
+      "audience": "Brands that want a steady flow of leads or online sales, at a cost that makes sense.",
+      "image": "/images/service-performance-marketing.jpg",
+      "imageAlt": "Campaign performance dashboard on a monitor",
+      "includes": [
+        {
+          "title": "Google Search & Performance Max",
+          "description": "Campaigns built around buying intent, not just clicks."
+        },
+        {
+          "title": "Meta & Instagram ads",
+          "description": "Prospecting and retargeting, with fresh creative every few weeks."
+        },
+        {
+          "title": "LinkedIn ads",
+          "description": "For B2B brands that need to reach decision makers."
+        },
+        {
+          "title": "Landing pages & testing",
+          "description": "Pages built to convert, with A/B tests running all the time."
+        },
+        {
+          "title": "Conversion tracking",
+          "description": "Calls, forms and sales tracked properly from day one."
+        },
+        {
+          "title": "Weekly reporting",
+          "description": "A live dashboard and a short call on what changed and why."
+        }
+      ],
+      "stat": {
+        "label": "Typical ROAS uplift",
+        "value": "3.2x"
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "seo-geo",
+      "title": "SEO & GEO",
+      "icon": "s-seo",
+      "summary": "Rank on Google and get recommended in AI answers from ChatGPT, Gemini and Perplexity.",
+      "lead": "We help you rank on Google and show up when people ask ChatGPT, Gemini or Perplexity for a recommendation. It takes longer than ads, but the traffic keeps coming without paying for every click.",
+      "audience": "Businesses that want steady enquiries from search, month after month.",
+      "image": "/images/service-seo-geo.jpg",
+      "imageAlt": "Analytics dashboard showing organic growth",
+      "includes": [
+        {
+          "title": "Technical SEO audit",
+          "description": "Speed, indexing, site structure and the fixes that matter most."
+        },
+        {
+          "title": "Keyword & content plan",
+          "description": "Topics your buyers actually search for, mapped to the right pages."
+        },
+        {
+          "title": "Local SEO",
+          "description": "Google Business Profile, reviews and location pages that bring footfall."
+        },
+        {
+          "title": "Content writing",
+          "description": "Articles and service pages written by people who know your industry."
+        },
+        {
+          "title": "Generative Engine Optimization",
+          "description": "Clear, structured content that AI assistants can find and quote."
+        },
+        {
+          "title": "Monthly reports",
+          "description": "Rankings, traffic and leads from search, all in one place."
+        }
+      ],
+      "stat": {
+        "label": "Organic traffic, best case",
+        "value": "+340%"
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "social-media-marketing",
+      "title": "Social Media Marketing",
+      "icon": "s-social",
+      "summary": "Content, community and paid social that build a following.",
+      "lead": "Content people stop scrolling for, posted consistently, and a community that's looked after. We add paid social when you need reach quickly.",
+      "audience": "Brands that want to be seen, remembered and talked about by the right people.",
+      "image": "/images/service-social-media.jpg",
+      "imageAlt": "Adpulse team reviewing social media creative on a large screen",
+      "includes": [
+        {
+          "title": "Content calendar",
+          "description": "A month planned ahead and approved by you before anything goes out."
+        },
+        {
+          "title": "Reels & short video",
+          "description": "Scripted, shot and edited for Instagram, YouTube Shorts and LinkedIn."
+        },
+        {
+          "title": "Design & copy",
+          "description": "Posts and carousels that look and sound like your brand."
+        },
+        {
+          "title": "Community management",
+          "description": "Replies to comments and DMs, so no customer is left waiting."
+        },
+        {
+          "title": "Paid social",
+          "description": "Putting budget behind the posts that are already working."
+        },
+        {
+          "title": "Monthly insights",
+          "description": "What grew, what didn't, and what we'll try next."
+        }
+      ],
+      "stat": {
+        "label": "",
+        "value": ""
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "creative-solutions",
+      "title": "Creative Solutions",
+      "icon": "s-creative",
+      "summary": "Brand identity, ad creative and video that get noticed.",
+      "lead": "Brand identity, ad creative and video from a team that sees how creative performs in the numbers, not just how it looks in a presentation.",
+      "audience": "Brands launching, refreshing their look, or needing ads that stand out.",
+      "image": "/images/service-creative-solutions.jpg",
+      "imageAlt": "Designers working on a brand moodboard and video edit",
+      "includes": [
+        {
+          "title": "Brand identity",
+          "description": "Logo, colours, typography and the rules that hold them together."
+        },
+        {
+          "title": "Ad creative",
+          "description": "Static, carousel and video ads made in batches for testing."
+        },
+        {
+          "title": "Video production",
+          "description": "Product films, explainers and reels, from script to final edit."
+        },
+        {
+          "title": "Print & packaging",
+          "description": "Brochures, packaging and event material that match your brand."
+        },
+        {
+          "title": "Brand guidelines",
+          "description": "One document that keeps every team and agency consistent."
+        },
+        {
+          "title": "Creative testing",
+          "description": "We test variations and keep the ones that sell."
+        }
+      ],
+      "stat": {
+        "label": "",
+        "value": ""
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "influencer-marketing",
+      "title": "Influencer Marketing",
+      "icon": "s-infl",
+      "summary": "Creators matched to your buyers, with sales tracking.",
+      "lead": "We find creators whose followers match your buyers, handle the briefs and contracts, and track what each post actually brings in.",
+      "audience": "Consumer brands that want trusted voices talking about their product.",
+      "image": "/images/service-influencer-marketing.jpg",
+      "imageAlt": "Creator filming product content while the team reviews results",
+      "includes": [
+        {
+          "title": "Creator sourcing",
+          "description": "Shortlists based on audience fit and real engagement, not follower count."
+        },
+        {
+          "title": "Briefs & approvals",
+          "description": "Clear briefs, with every post reviewed before it goes live."
+        },
+        {
+          "title": "Contracts & payments",
+          "description": "Handled by us, so your team doesn't chase anyone."
+        },
+        {
+          "title": "UGC content",
+          "description": "Creator-made videos you can reuse in your ads."
+        },
+        {
+          "title": "Sales tracking",
+          "description": "Unique links and codes to measure sales from every creator."
+        },
+        {
+          "title": "Campaign report",
+          "description": "Reach, engagement and sales, creator by creator."
+        }
+      ],
+      "stat": {
+        "label": "",
+        "value": ""
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "websites-landing-pages",
+      "title": "Websites & Landing Pages",
+      "icon": "s-web",
+      "summary": "Fast, mobile-first sites designed to convert.",
+      "lead": "Fast, mobile-first websites and landing pages, designed around what you want visitors to do next and easy for your team to update.",
+      "audience": "Businesses whose website should be bringing in enquiries, not just sitting there.",
+      "image": "/images/service-websites.jpg",
+      "imageAlt": "Responsive website shown on a desktop, laptop and phone",
+      "includes": [
+        {
+          "title": "UX & design",
+          "description": "Page layouts planned around your customers' questions."
+        },
+        {
+          "title": "Development",
+          "description": "WordPress, Shopify or a custom build, depending on what you need."
+        },
+        {
+          "title": "Landing pages",
+          "description": "Focused pages for campaigns, built to convert ad traffic."
+        },
+        {
+          "title": "Speed & SEO setup",
+          "description": "Fast load times and a clean structure from launch day."
+        },
+        {
+          "title": "Forms & tracking",
+          "description": "Enquiries going straight to your inbox or CRM, fully tracked."
+        },
+        {
+          "title": "Support & updates",
+          "description": "Changes, backups and security after launch."
+        }
+      ],
+      "stat": {
+        "label": "",
+        "value": ""
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "ai-marketing-automation",
+      "title": "AI Marketing Automation",
+      "icon": "s-ai",
+      "summary": "WhatsApp, email and lead scoring that never go cold.",
+      "lead": "Follow-ups, lead scoring and reminders that run on their own, so every enquiry gets a quick reply and your sales team spends its time on the right leads.",
+      "audience": "Teams that get enquiries faster than they can follow up on them.",
+      "image": "/images/service-ai-automation.jpg",
+      "imageAlt": "Marketing automation workflow with WhatsApp and email steps",
+      "includes": [
+        {
+          "title": "WhatsApp flows",
+          "description": "Instant replies and follow-ups on the app your customers already use."
+        },
+        {
+          "title": "Email automation",
+          "description": "Welcome series, reminders and win-back emails."
+        },
+        {
+          "title": "Lead scoring",
+          "description": "Leads ranked by how likely they are to buy."
+        },
+        {
+          "title": "Website chat",
+          "description": "Answers to common questions on your site, day and night."
+        },
+        {
+          "title": "CRM integration",
+          "description": "Leads from every channel landing in one place."
+        },
+        {
+          "title": "Reporting",
+          "description": "Response times, conversions and drop-off points tracked."
+        }
+      ],
+      "stat": {
+        "label": "",
+        "value": ""
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    {
+      "slug": "online-reputation-management",
+      "title": "Online Reputation Management",
+      "icon": "s-orm",
+      "summary": "More five-star reviews and fast, careful responses.",
+      "lead": "More genuine reviews, quick and careful replies, and a plan ready for the day something goes wrong. What people read about you online decides whether they call.",
+      "audience": "Clinics, stores, restaurants and any business people check before they visit.",
+      "image": "/images/service-reputation-management.jpg",
+      "imageAlt": "Reputation dashboard with reviews, ratings and sentiment",
+      "includes": [
+        {
+          "title": "Review generation",
+          "description": "Simple ways to ask happy customers for a review."
+        },
+        {
+          "title": "Review responses",
+          "description": "Every review answered in your brand's voice."
+        },
+        {
+          "title": "Brand monitoring",
+          "description": "Alerts whenever your brand is mentioned online."
+        },
+        {
+          "title": "Google Business Profile",
+          "description": "Kept accurate, active and complete."
+        },
+        {
+          "title": "Negative feedback",
+          "description": "Calm, quick replies that show you take it seriously."
+        },
+        {
+          "title": "Crisis plan",
+          "description": "Steps agreed in advance, so nobody panics."
+        }
+      ],
+      "stat": {
+        "label": "",
+        "value": ""
+      },
+      "related": [],
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  ]
+}

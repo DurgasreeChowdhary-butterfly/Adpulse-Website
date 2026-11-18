@@ -1,0 +1,87 @@
+{
+  "siteName": "Adpulse Digital",
+  "shortName": "Adpulse",
+  "tagline": "Smarter marketing · Stronger brands · Sustainable growth",
+  "seo": {
+    "title": "Adpulse Digital · AI-powered digital growth agency",
+    "description": "Adpulse plans, creates and runs your marketing as one team, using AI and live data to bring real leads and revenue.",
+    "url": "https://www.adpulsedigital.in",
+    "ogImage": "/images/hero-team-meeting.jpg"
+  },
+  "contact": {
+    "email": "hr@adpulsedigital.in",
+    "website": "www.adpulsedigital.in",
+    "address": "Sy No: 11/32 & 11/33, 6th floor, DGS Prime, Khanamet, Madhapur, Hyderabad, Telangana 500081",
+    "shortAddress": "Madhapur, Hyderabad",
+    "phones": [],
+    "otherEmails": []
+  },
+  "socials": [
+    {
+      "label": "Instagram",
+      "icon": "so-ig",
+      "url": "https://www.instagram.com/"
+    },
+    {
+      "label": "Facebook",
+      "icon": "so-fb",
+      "url": "https://www.facebook.com/"
+    },
+    {
+      "label": "LinkedIn",
+      "icon": "so-in",
+      "url": "https://www.linkedin.com/"
+    },
+    {
+      "label": "WhatsApp",
+      "icon": "so-wa",
+      "url": "https://www.whatsapp.com/"
+    },
+    {
+      "label": "YouTube",
+      "icon": "so-yt",
+      "url": "https://www.youtube.com/"
+    }
+  ],
+  "audit": {
+    "eyebrow": "Free · 48-hour turnaround",
+    "title": "Get your free growth audit",
+    "description": "Tell us about your business. A strategist will review your ads, website and search presence.",
+    "submitLabel": "Request my audit",
+    "successTitle": "Request received",
+    "successText": "Thanks. A strategist will be in touch within 48 hours.",
+    "otherOption": "Not sure yet",
+    "fields": {
+      "name": "Your name",
+      "phone": "Phone",
+      "email": "Work email",
+      "website": "Website",
+      "websitePlaceholder": "yourbrand.com",
+      "service": "What do you need help with?",
+      "closeLabel": "Close"
+    }
+  },
+  "newsletter": {
+    "label": "Monthly growth notes",
+    "placeholder": "Your email",
+    "successText": "Thanks, you're on the list."
+  },
+  "privacy": {
+    "consentText": "",
+    "policyUrl": ""
+  },
+  "contactLabels": {
+    "email": "Email",
+    "phone": "Phone",
+    "web": "Web",
+    "office": "Office"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "This page doesn't exist.",
+    "text": "The link may be out of date. Head back to the homepage or explore our services.",
+    "primaryLabel": "Back to home",
+    "secondaryLabel": "Our services",
+    "secondaryHref": "/services"
+  }
+}

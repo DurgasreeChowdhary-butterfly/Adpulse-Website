@@ -1,0 +1,18 @@
+{
+  "enabled": false,
+  "section": {
+    "eyebrow": "What clients say",
+    "title": "In their words."
+  },
+  "items": [
+    {
+      "quote": "Replace with a real client quote before enabling this section.",
+      "name": "Client name",
+      "role": "Role",
+      "company": "Company",
+      "rating": 5,
+      "isSample": true,
+      "visible": true
+    }
+  ]
+}

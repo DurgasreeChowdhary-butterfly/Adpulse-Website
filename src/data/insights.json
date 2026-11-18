@@ -1,0 +1,74 @@
+{
+  "page": {
+    "eyebrow": "Insights",
+    "title": "Notes from the people | running the campaigns.",
+    "description": "Practical ideas on ads, search, websites and growth, from our team's day-to-day work.",
+    "readLabel": "Read article",
+    "sampleNote": "Sample articles for layout. Replace with real posts before launch.",
+    "backLabel": "All insights",
+    "metaTitle": "Insights",
+    "metaDescription": ""
+  },
+  "items": [
+    {
+      "slug": "why-most-ad-budgets-leak",
+      "title": "Why most ad budgets leak, and the five places to check first",
+      "status": "published",
+      "author": "",
+      "date": "2026-11-03",
+      "category": "Performance",
+      "readTime": "5 min read",
+      "excerpt": "Wasted spend usually hides in the same few places. Here's the checklist we run in the first week of every audit.",
+      "cover": "/images/service-performance-marketing.jpg",
+      "coverAlt": "",
+      "body": [
+        "Most accounts we audit are not short of budget. They are short of focus. Money drifts into searches that never buy, audiences that were never right, and pages that lose people before the form.",
+        "We start with search terms, then audience overlap, then landing page speed, then conversion tracking, and finally the bidding strategy. In that order, because each step changes what the next one tells you.",
+        "If you only have an hour this week, open your search terms report and sort by cost. The answer is usually in the top twenty rows."
+      ],
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "seo-in-the-age-of-ai-answers",
+      "title": "SEO in the age of AI answers: what still works",
+      "status": "published",
+      "author": "",
+      "date": "2026-10-21",
+      "category": "SEO & GEO",
+      "readTime": "6 min read",
+      "excerpt": "ChatGPT, Gemini and Perplexity now answer before anyone clicks. This is how we make sure our clients are the answer.",
+      "cover": "/images/service-seo-geo.jpg",
+      "coverAlt": "",
+      "body": [
+        "Search hasn't gone away. It has split. People still search Google, but more of them ask an assistant first and only click when they want to check.",
+        "AI assistants quote pages that answer clearly, cite real numbers and are trusted elsewhere on the web. That is good SEO with a sharper edge.",
+        "We now write every key page so it could be quoted in a single paragraph, and we track where our clients are mentioned, not just where they rank."
+      ],
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    },
+    {
+      "slug": "landing-pages-that-convert",
+      "title": "Landing pages that convert: a short field guide",
+      "status": "published",
+      "author": "",
+      "date": "2026-10-08",
+      "category": "Websites",
+      "readTime": "4 min read",
+      "excerpt": "One page, one job. The structure we use for every campaign landing page, and why it works on a phone.",
+      "cover": "/images/service-websites.jpg",
+      "coverAlt": "",
+      "body": [
+        "A landing page has one job: turn the click you paid for into a conversation. Everything on it should help with that job or be removed.",
+        "We lead with the promise from the ad, show proof straight away, keep the form short and repeat the call to action after every section.",
+        "Then we test. Headline first, form length second, proof third. Small changes, measured properly, add up quickly."
+      ],
+      "metaTitle": "",
+      "metaDescription": "",
+      "isSample": true
+    }
+  ]
+}

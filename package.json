@@ -1,0 +1,48 @@
+{
+  "name": "adpulse-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Adpulse Digital website: Next.js front end with a structured content layer and an admin panel foundation.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/db/migrate.ts",
+    "db:seed": "tsx scripts/db/seed.ts",
+    "db:verify": "tsx scripts/db/verify.ts",
+    "db:export": "tsx scripts/db/export.ts",
+    "db:restore": "tsx scripts/db/restore.ts"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.2",
+    "drizzle-orm": "0.45.4",
+    "next": "14.2.15",
+    "pg": "8.23.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "server-only": "0.0.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.10",
+    "@types/pg": "8.23.1",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "drizzle-kit": "0.31.11",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.15",
+    "tsx": "4.19.2",
+    "typescript": "5.5.4"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "overrides": {
+    "@vercel/cli-config": {
+      "zod": "$zod"
+    }
+  }
+}

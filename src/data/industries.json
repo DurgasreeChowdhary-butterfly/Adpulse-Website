@@ -1,0 +1,68 @@
+{
+  "page": {
+    "eyebrow": "Industries we serve",
+    "title": "Every sector buys differently. | We have a playbook for each.",
+    "description": "Sales cycles, ad policies and search intent change by industry, so our plans do too. Here's where we do our best work.",
+    "primaryCta": {
+      "label": "Get a free audit",
+      "action": "audit"
+    },
+    "secondaryCta": {
+      "label": "Explore services",
+      "href": "/services"
+    },
+    "ledByPrefix": "Led by",
+    "metaTitle": "Industries",
+    "metaDescription": ""
+  },
+  "items": [
+    {
+      "icon": "n-cart",
+      "title": "E-commerce & D2C",
+      "description": "Shopping ads, product feeds and repeat-purchase flows.",
+      "ledBy": "performance-marketing"
+    },
+    {
+      "icon": "n-health",
+      "title": "Healthcare",
+      "description": "Policy-safe ads and local search that fill appointments.",
+      "ledBy": "seo-geo"
+    },
+    {
+      "icon": "n-home",
+      "title": "Real Estate",
+      "description": "Launch campaigns and site-visit lead funnels.",
+      "ledBy": "performance-marketing"
+    },
+    {
+      "icon": "n-edu",
+      "title": "Education",
+      "description": "Admissions campaigns timed to intake cycles.",
+      "ledBy": "performance-marketing"
+    },
+    {
+      "icon": "n-saas",
+      "title": "IT & SaaS",
+      "description": "Content and LinkedIn for long B2B sales cycles.",
+      "ledBy": "seo-geo"
+    },
+    {
+      "icon": "n-store",
+      "title": "Retail & Local Business",
+      "description": "Google Maps visibility and reviews that bring footfall.",
+      "ledBy": "online-reputation-management"
+    },
+    {
+      "icon": "n-hotel",
+      "title": "Hospitality",
+      "description": "Direct bookings that cut travel-site commissions.",
+      "ledBy": "social-media-marketing"
+    },
+    {
+      "icon": "n-factory",
+      "title": "Manufacturing & B2B",
+      "description": "Search and LinkedIn that reach procurement teams.",
+      "ledBy": "performance-marketing"
+    }
+  ]
+}
