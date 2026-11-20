@@ -5,7 +5,8 @@ import { statusUpdate } from '@/services/enquiries/validation';
 export const dynamic = 'force-dynamic';
 
 /** PATCH { status: "new" | "contacted" | "closed" }  (admin only) */
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params: paramsPromise }: { params: Promise<{ id: string }> }) {
+  const params = await paramsPromise;
   const id = Number(params.id);
   if (!Number.isInteger(id) || id < 1) return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
   const parsed = statusUpdate.safeParse(await req.json().catch(() => null));

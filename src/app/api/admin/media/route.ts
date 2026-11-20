@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 const fail = (error: string, status: number) => NextResponse.json({ error }, { status });
 
-/** Lists the media library: files, alt text and where each file is used. Protected by middleware.ts. */
+/** Lists the media library: files, alt text and where each file is used. Protected by proxy.ts. */
 export async function GET() {
   const storage = mediaStorage();
   try {

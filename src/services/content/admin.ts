@@ -12,8 +12,12 @@ export function isCollectionKey(key: string): key is CollectionKey {
   return (COLLECTION_KEYS as string[]).includes(key);
 }
 
-/** Writes are allowed in development, with the database or a backend API, or when explicitly enabled. */
+/**
+ * Writes are allowed in development, with the database or a backend API, or when explicitly enabled.
+ * On Vercel, JSON-file content is always read-only: its disk is temporary, so saves would be lost.
+ */
 export function writesAllowed(): boolean {
+  if (process.env.VERCEL && activeSource().name === 'json') return false;
   return (
     process.env.NODE_ENV === 'development' ||
     process.env.ALLOW_CONTENT_WRITES === 'true' ||

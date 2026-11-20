@@ -1,5 +1,5 @@
 /**
- * Admin sessions. Runs in the middleware (Edge runtime) and in route handlers, so it only uses Web Crypto.
+ * Admin sessions. Runs in the proxy (src/proxy.ts) and in route handlers. Uses only Web Crypto, so it works on the Node.js and Edge runtimes.
  *
  * - The password lives only in the ADMIN_PASSWORD environment variable and is never sent to the browser.
  * - After a correct password, the browser gets an HTTP-only cookie holding a signed token
@@ -95,6 +95,23 @@ export function sessionCookie(value: string, maxAge = SESSION_MAX_AGE) {
     path: '/',
     maxAge,
   };
+}
+
+/**
+ * True when `source` (an Origin or Referer value) is this site.
+ * Compared with the Host header and, behind a reverse proxy (e.g. Hostinger), X-Forwarded-Host.
+ * Browsers cannot set X-Forwarded-Host on cross-site requests, so this still blocks cross-site posts.
+ */
+export function fromThisSite(source: string | null | undefined, headers: Headers): boolean {
+  if (!source) return false;
+  let host: string;
+  try {
+    host = new URL(source).host.toLowerCase();
+  } catch {
+    return false;
+  }
+  const hosts = [headers.get('host'), ...(headers.get('x-forwarded-host')?.split(',') ?? [])].map((h) => h?.trim().toLowerCase()).filter(Boolean);
+  return hosts.includes(host);
 }
 
 /** Only allow redirects back into the admin (never to another site). */

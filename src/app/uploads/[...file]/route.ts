@@ -17,7 +17,8 @@ const TYPES: Record<string, string> = {
  * (a production server does not pick up new files in /public on its own).
  * Not used with cloud storage, where uploads get their own URLs.
  */
-export async function GET(_req: Request, { params }: { params: { file: string[] } }) {
+export async function GET(_req: Request, { params: paramsPromise }: { params: Promise<{ file: string[] }> }) {
+  const params = await paramsPromise;
   const name = params.file.join('/');
   const data = await readLocalUpload(name);
   if (!data) return new Response('Not found', { status: 404 });

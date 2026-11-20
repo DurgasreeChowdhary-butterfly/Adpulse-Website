@@ -5,10 +5,11 @@ import path from 'path';
 /**
  * Where image FILES live. Alt text and other metadata live in the `media` content collection.
  *
- * - `local` (default): files on this server's disk under /public. Works in development and on a
- *   single server (VPS). Not suitable for serverless hosts, whose disk is read-only/temporary.
- * - `cloud`: Vercel Blob object storage for production (MEDIA_STORAGE=cloud + BLOB_READ_WRITE_TOKEN).
- *   To use S3, Cloudinary or similar instead, reimplement `cloudStorage` with the same three methods.
+ * - `local` (default): files on this server's disk under /public. Uploads work in development only:
+ *   they are refused in production, where the app folder is replaced on every deploy.
+ * - `s3`: any S3-compatible storage (Cloudflare R2, AWS S3, …) for production (MEDIA_STORAGE=s3, see s3Storage).
+ * - `cloud`: Vercel Blob object storage (MEDIA_STORAGE=cloud + BLOB_READ_WRITE_TOKEN).
+ *   For another provider, add a storage with the same three methods and select it in mediaStorage().
  */
 export interface MediaFile {
   url: string;
@@ -18,7 +19,7 @@ export interface MediaFile {
 }
 
 export interface MediaStorage {
-  readonly mode: 'local' | 'cloud';
+  readonly mode: 'local' | 'cloud' | 's3';
   /** Short human description shown in the admin */
   readonly description: string;
   list(): Promise<MediaFile[]>;
@@ -75,9 +76,14 @@ export const localStorage: MediaStorage = {
   },
 };
 
-/** Serverless hosts have no lasting disk, so local storage would lose uploads. */
+/**
+ * Production deployments (Hostinger, Vercel, …) replace the app folder on every deploy,
+ * so files written there would be lost. Uploads must go to external storage in production.
+ */
 function assertWritableDisk() {
-  if (process.env.VERCEL) throw new Error('This host has no permanent disk. Set MEDIA_STORAGE=cloud and connect a Vercel Blob store.');
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    throw new Error('Uploads cannot be stored on this server: its files are replaced on every deploy. Set MEDIA_STORAGE=s3 (S3-compatible storage) or MEDIA_STORAGE=cloud (Vercel Blob).');
+  }
 }
 
 /** Images shipped with the site code (/public/images). Read-only on serverless hosts. */
@@ -131,7 +137,100 @@ export const cloudStorage: MediaStorage = {
   },
 };
 
+/* ---------------- S3-compatible object storage ----------------
+ * Works with Cloudflare R2, AWS S3, Backblaze B2, DigitalOcean Spaces, MinIO, …
+ * MEDIA_STORAGE=s3 + S3_BUCKET, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_PUBLIC_URL
+ * (+ S3_ENDPOINT for anything other than AWS, S3_REGION, optional S3_FORCE_PATH_STYLE=true).
+ * Files are stored under uploads/ and served from S3_PUBLIC_URL (the bucket's public URL or a CDN domain).
+ */
+const CONTENT_TYPES: Record<string, string> = {
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  png: 'image/png',
+  webp: 'image/webp',
+  gif: 'image/gif',
+  svg: 'image/svg+xml',
+  avif: 'image/avif',
+};
+
+function s3Config() {
+  const { S3_BUCKET: bucket, S3_ACCESS_KEY_ID: accessKeyId, S3_SECRET_ACCESS_KEY: secretAccessKey, S3_PUBLIC_URL: publicUrl } = process.env;
+  if (!bucket || !accessKeyId || !secretAccessKey || !publicUrl) {
+    throw new Error('S3 storage is not configured. Set S3_BUCKET, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY and S3_PUBLIC_URL.');
+  }
+  return {
+    bucket,
+    publicUrl: publicUrl.replace(/\/+$/, ''),
+    client: {
+      region: process.env.S3_REGION || 'auto',
+      endpoint: process.env.S3_ENDPOINT || undefined,
+      forcePathStyle: process.env.S3_FORCE_PATH_STYLE === 'true',
+      credentials: { accessKeyId, secretAccessKey },
+    },
+  };
+}
+
+type S3Module = typeof import('@aws-sdk/client-s3');
+let s3Cache: { mod: S3Module; client: InstanceType<S3Module['S3Client']>; bucket: string; publicUrl: string } | null = null;
+
+async function s3() {
+  if (s3Cache) return s3Cache;
+  const cfg = s3Config();
+  const mod = await import('@aws-sdk/client-s3');
+  s3Cache = { mod, client: new mod.S3Client(cfg.client), bucket: cfg.bucket, publicUrl: cfg.publicUrl };
+  return s3Cache;
+}
+
+/** Object key for one of our uploaded files, or an error for any other URL. */
+function s3KeyOf(url: string, publicUrl: string): string {
+  if (!url.startsWith(`${publicUrl}/`)) throw new Error('Not a media library file.');
+  const key = url.slice(publicUrl.length + 1);
+  if (!/^uploads\/[a-z0-9.\-]+$/.test(key) || !ALLOWED_IMAGE.test(key)) throw new Error('Not a media library file.');
+  return key;
+}
+
+export const s3Storage: MediaStorage = {
+  mode: 's3',
+  description: 'S3-compatible cloud storage. Images shipped with the site code (/images) are listed too and can be replaced, but not deleted.',
+  async list() {
+    const { mod, client, bucket, publicUrl } = await s3();
+    const files: MediaFile[] = await bundledImages();
+    let token: string | undefined;
+    do {
+      const page = await client.send(new mod.ListObjectsV2Command({ Bucket: bucket, Prefix: 'uploads/', ContinuationToken: token }));
+      for (const o of page.Contents ?? []) {
+        if (!o.Key || !ALLOWED_IMAGE.test(o.Key)) continue;
+        files.push({ url: `${publicUrl}/${o.Key}`, name: o.Key.replace(/^uploads\//, ''), folder: 'cloud', size: o.Size ?? 0 });
+      }
+      token = page.IsTruncated ? page.NextContinuationToken : undefined;
+    } while (token);
+    return files;
+  },
+  async upload(file) {
+    const { mod, client, bucket, publicUrl } = await s3();
+    const safe = file.name.toLowerCase().replace(/[^a-z0-9.\-]+/g, '-');
+    const key = `uploads/${Date.now()}-${crypto.randomUUID().slice(0, 8)}-${safe}`;
+    const ext = safe.split('.').pop() ?? '';
+    await client.send(
+      new mod.PutObjectCommand({
+        Bucket: bucket,
+        Key: key,
+        Body: new Uint8Array(await file.arrayBuffer()),
+        ContentType: CONTENT_TYPES[ext] ?? 'application/octet-stream',
+        CacheControl: 'public, max-age=31536000, immutable',
+      }),
+    );
+    return `${publicUrl}/${key}`;
+  },
+  async remove(url) {
+    if (url.startsWith('/images/')) throw new Error('This image is shipped with the site code. Replace it instead, or remove it from the repository.');
+    const { mod, client, bucket, publicUrl } = await s3();
+    await client.send(new mod.DeleteObjectCommand({ Bucket: bucket, Key: s3KeyOf(url, publicUrl) }));
+  },
+};
+
 export function mediaStorage(): MediaStorage {
+  if (process.env.MEDIA_STORAGE === 's3') return s3Storage;
   return process.env.MEDIA_STORAGE === 'cloud' ? cloudStorage : localStorage;
 }
 

@@ -10,8 +10,8 @@ export const dynamic = 'force-dynamic';
 
 /** The signed-in admin panel: sidebar + content. */
 export default async function AdminPanelLayout({ children }: { children: React.ReactNode }) {
-  // Second check behind middleware.ts: the panel never renders without a valid session.
-  if (!(await verifySessionToken(cookies().get(SESSION_COOKIE)?.value))) redirect('/admin/login');
+  // Second check behind proxy.ts: the panel never renders without a valid session.
+  if (!(await verifySessionToken((await cookies()).get(SESSION_COOKIE)?.value))) redirect('/admin/login');
 
   const source = { db: 'Database', api: 'Backend API' }[process.env.CONTENT_SOURCE ?? ''] ?? 'JSON files (src/data)';
   return (

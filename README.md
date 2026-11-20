@@ -8,7 +8,9 @@ Built with **Next.js 14 (App Router) + TypeScript**. Every piece of content live
 
 ## Quick start
 
-Requirements: **Node.js 18.18+** (Node 20 LTS recommended) and npm.
+Requirements: **Node.js 20.9+** (Node 22 LTS recommended; required by Next.js 16) and npm.
+
+Deploying to Hostinger: see **[HOSTINGER_DEPLOYMENT.md](HOSTINGER_DEPLOYMENT.md)**.
 
 ```bash
 npm install
@@ -40,7 +42,8 @@ None are required for local development. To configure one, copy `.env.example` t
 | `CONTENT_SOURCE` | `json` | `json` = `src/data/*.json` (local development) · `db` = PostgreSQL (production) · `api` = an external backend |
 | `DATABASE_URL` | (none) | PostgreSQL connection string. Required for `CONTENT_SOURCE=db` and the `npm run db:*` commands |
 | `DATABASE_POOL_MAX` | `5` | Max database connections per server instance |
-| `MEDIA_STORAGE` | `local` | `local` = this server's disk · `cloud` = Vercel Blob |
+| `MEDIA_STORAGE` | `local` | `local` = this computer's disk (development only; uploads refused in production) · `s3` = S3-compatible storage (Cloudflare R2, AWS S3, …) · `cloud` = Vercel Blob |
+| `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_PUBLIC_URL`, `S3_ENDPOINT`, `S3_REGION`, `S3_FORCE_PATH_STYLE` | (none) | S3-compatible storage settings for `MEDIA_STORAGE=s3` (see `.env.example`) |
 | `BLOB_READ_WRITE_TOKEN` | (none) | Vercel Blob token (added by Vercel when a Blob store is connected). Required for `MEDIA_STORAGE=cloud` |
 | `CONTENT_API_URL` | (none) | External backend base URL (`CONTENT_SOURCE=api` only) |
 | `CONTENT_API_TOKEN` | (none) | Optional bearer token sent to the external backend |
@@ -109,7 +112,7 @@ src/
   utils/motion/        Reveals, kinetic headings, pulse, photo drift, hero depth
   styles/              globals.css (design system), pages.css, admin.css
   services/auth/       Admin sessions (password check, signed cookie)
-  middleware.ts        Protects /admin and /api/admin (session cookie + same-origin check)
+  proxy.ts             Protects /admin and /api/admin (session cookie + same-origin check)
 public/
   images/              Approved photos
   uploads/             Images uploaded from the admin (development)
@@ -126,7 +129,7 @@ PostgreSQL (production)  ─┐
 src/data/*.json (dev)    ─┼─►  services/content (getHome, getServices, ...)  ─►  pages & components
 External API (optional)  ─┘          ▲
                                      │  validate → save → revalidate pages
-Admin panel  ─►  /api/admin/content/...  (login + same-origin check in middleware.ts)
+Admin panel  ─►  /api/admin/content/...  (login + same-origin check in proxy.ts)
 
 Admin panel  ─►  /api/admin/media  ─►  Vercel Blob (production) | public/uploads (dev)
 ```
@@ -158,7 +161,7 @@ Headings support small inline markup, so editors never need HTML:
 - A correct password sets an **HTTP-only, SameSite=Strict** cookie (Secure in production) holding a signed token (HMAC-SHA256) that expires after **8 hours**. Page JavaScript cannot read it.
 - **Log out** (bottom of the sidebar) deletes the cookie. Sessions survive server restarts until they expire; changing `ADMIN_PASSWORD` (or `ADMIN_SESSION_SECRET`) signs everyone out immediately.
 - 5 wrong passwords from one address lock sign-in for 15 minutes (per server instance).
-- Code: `src/services/auth/session.ts`, `src/middleware.ts`, `src/app/admin/login`, `src/app/api/admin/login|logout`. The signed-in panel lives in `src/app/admin/(panel)/` (the folder name does not appear in URLs).
+- Code: `src/services/auth/session.ts`, `src/proxy.ts`, `src/app/admin/login`, `src/app/api/admin/login|logout`. The signed-in panel lives in `src/app/admin/(panel)/` (the folder name does not appear in URLs).
 
 - The editor builds its form from the data itself. Add a field to a JSON file (or your API) and it appears in the admin automatically.
 - Every list supports add, edit, delete and reorder (↑ ↓ ✕). **List order is display order** (services, case studies, logos, industries...).
@@ -182,6 +185,8 @@ Headings support small inline markup, so editors never need HTML:
 ---
 
 ## Production: database + cloud media
+
+> Hosting on **Hostinger**: follow [HOSTINGER_DEPLOYMENT.md](HOSTINGER_DEPLOYMENT.md) (S3-compatible media storage, Node.js app settings). The database parts below apply to any host.
 
 **Stack:** PostgreSQL (recommended host: [Neon](https://neon.tech), available in the Vercel Marketplace) · Drizzle ORM + `pg` · Vercel Blob for images. Any PostgreSQL works; only `DATABASE_URL` changes.
 

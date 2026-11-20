@@ -7,20 +7,22 @@ import { CtaSection } from '@/components/sections/CtaSection';
 import { Icon } from '@/components/ui/Icon';
 import { formatDate } from '@/utils/format';
 
-type Params = { params: { slug: string } };
+type Params = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
   return (await getInsights()).map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+export async function generateMetadata({ params: paramsPromise }: Params): Promise<Metadata> {
+  const params = await paramsPromise;
   const p = await getInsightBySlug(params.slug);
   if (!p) return {};
   const seo = pageSeo(p, p.title, p.excerpt);
   return { ...seo, openGraph: { title: seo.title, description: seo.description, images: p.cover ? [p.cover] : [] } };
 }
 
-export default async function InsightPage({ params }: Params) {
+export default async function InsightPage({ params: paramsPromise }: Params) {
+  const params = await paramsPromise;
   const [post, page, home, settings, nav] = await Promise.all([getInsightBySlug(params.slug), getInsightsContent(), getHome(), getSettings(), getNavigation()]);
   if (!post) notFound();
   const bc = nav.breadcrumbs;

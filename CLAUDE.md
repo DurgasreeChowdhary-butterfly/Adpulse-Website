@@ -19,9 +19,9 @@ Read README.md first. These are the rules for working in this repo.
 - Shared UI: `src/components/ui/*`
 - Admin: `src/app/admin/*`, `src/components/admin/*`, menu in `src/admin/sections.ts`
 - APIs: `src/app/api/*`
-- Auth for admin: `src/services/auth/session.ts` (password check + signed HTTP-only cookie), enforced in `src/middleware.ts` and `src/app/admin/(panel)/layout.tsx`; login page `src/app/admin/login`. Never add an admin page outside `(panel)` or an admin API outside `/api/admin`.
+- Auth for admin: `src/services/auth/session.ts` (password check + signed HTTP-only cookie), enforced in `src/proxy.ts` (Next.js 16 proxy, formerly middleware) and `src/app/admin/(panel)/layout.tsx`; login page `src/app/admin/login`. Never add an admin page outside `(panel)` or an admin API outside `/api/admin`.
 - Database: `src/services/content/db/` (Drizzle schema, pool, repo), migrations in `drizzle/`, scripts in `scripts/db/`
-- Media storage: `src/services/media/storage.ts` (local | Vercel Blob)
+- Media storage: `src/services/media/storage.ts` (local for development | S3-compatible | Vercel Blob)
 - Forms and enquiries: `src/services/enquiries/` (validation, spam checks, rate limit, store, Resend email). Never log personal data from forms; return success only after the save.
 
 ## Heading styles (class on the heading element)

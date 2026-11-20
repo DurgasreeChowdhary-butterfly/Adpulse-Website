@@ -3,7 +3,7 @@ import { createItem, errorResponse, isCollectionKey, listItems } from '@/service
 
 export const dynamic = 'force-dynamic';
 
-type Ctx = { params: { collection: string } };
+type Ctx = { params: Promise<{ collection: string }> };
 
 const fail = (e: unknown) => {
   const { status, body } = errorResponse(e);
@@ -11,7 +11,8 @@ const fail = (e: unknown) => {
 };
 
 /** GET /api/admin/content/{collection}/items -> [{ id, position, item }] in display order */
-export async function GET(_req: Request, { params }: Ctx) {
+export async function GET(_req: Request, { params: paramsPromise }: Ctx) {
+  const params = await paramsPromise;
   if (!isCollectionKey(params.collection)) return NextResponse.json({ error: 'Unknown collection' }, { status: 404 });
   try {
     return NextResponse.json({ items: await listItems(params.collection) });
@@ -21,7 +22,8 @@ export async function GET(_req: Request, { params }: Ctx) {
 }
 
 /** POST { item, position? } -> creates an item (position is 1-based; default: last) */
-export async function POST(req: Request, { params }: Ctx) {
+export async function POST(req: Request, { params: paramsPromise }: Ctx) {
+  const params = await paramsPromise;
   if (!isCollectionKey(params.collection)) return NextResponse.json({ error: 'Unknown collection' }, { status: 404 });
   const body = await req.json().catch(() => null);
   if (!body || typeof body !== 'object') return NextResponse.json({ error: 'Expected { "item": {...}, "position"?: number }' }, { status: 400 });

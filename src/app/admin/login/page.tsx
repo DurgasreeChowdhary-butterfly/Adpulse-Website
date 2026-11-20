@@ -6,7 +6,8 @@ import { adminConfigured, safeNext } from '@/services/auth/session';
 export const metadata: Metadata = { title: 'Sign in', robots: { index: false, follow: false } };
 export const dynamic = 'force-dynamic';
 
-export default function AdminLoginPage({ searchParams }: { searchParams: { next?: string; signedOut?: string } }) {
+export default async function AdminLoginPage({ searchParams: searchParamsPromise }: { searchParams: Promise<{ next?: string; signedOut?: string }> }) {
+  const searchParams = await searchParamsPromise;
   return (
     <main className="adm-login">
       <div className="adm-login-box">

@@ -1,5 +1,6 @@
 import 'server-only';
 import { createHmac, randomBytes } from 'crypto';
+import { fromThisSite } from '@/services/auth/session';
 import { getServices, getSettings } from '@/services/content';
 import { notifyNewAudit } from './notify';
 import { enquiryStore, pgCode, StoreUnavailableError } from './store';
@@ -38,14 +39,7 @@ function ipHash(req: Request): string {
 }
 
 function sameSite(req: Request): boolean {
-  const host = req.headers.get('host');
-  const from = req.headers.get('origin') || req.headers.get('referer');
-  if (!host || !from) return false;
-  try {
-    return new URL(from).host === host;
-  } catch {
-    return false;
-  }
+  return fromThisSite(req.headers.get('origin') || req.headers.get('referer'), req.headers);
 }
 
 export async function handleSubmission(req: Request, type: EnquiryType): Promise<Result> {

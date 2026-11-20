@@ -16,7 +16,8 @@ async function iconIds(): Promise<string[]> {
   return Array.from(svg.matchAll(/<symbol id="([^"]+)"/g), (m) => m[1]);
 }
 
-export default async function AdminSectionPage({ params }: { params: { section: string } }) {
+export default async function AdminSectionPage({ params: paramsPromise }: { params: Promise<{ section: string }> }) {
+  const params = await paramsPromise;
   const section = sectionBySlug(params.section);
   if (!section || !section.slug) notFound();
 

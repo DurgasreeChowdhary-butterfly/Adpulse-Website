@@ -5,12 +5,10 @@ const nextConfig = {
     // Add your CDN / CMS image host here when content moves to a backend.
     remotePatterns: [],
   },
-  experimental: {
-    // Files read from disk at runtime must be bundled into the serverless functions (Vercel).
-    outputFileTracingIncludes: {
-      '/api/admin/media': ['./public/images/**/*'],
-      '/admin/[section]': ['./public/icons.svg'],
-    },
+  // Files read from disk at runtime are traced into the server output (needed for serverless hosts and standalone builds).
+  outputFileTracingIncludes: {
+    '/api/admin/media': ['./public/images/**/*'],
+    '/admin/[section]': ['./public/icons.svg'],
   },
 };
 

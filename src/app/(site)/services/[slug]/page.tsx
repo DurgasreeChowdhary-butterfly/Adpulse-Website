@@ -9,20 +9,22 @@ import { SectionHead } from '@/components/ui/SectionHead';
 import { Icon } from '@/components/ui/Icon';
 import { pad } from '@/utils/format';
 
-type Params = { params: { slug: string } };
+type Params = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
   return (await getServices()).map((s) => ({ slug: s.slug }));
 }
 
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+export async function generateMetadata({ params: paramsPromise }: Params): Promise<Metadata> {
+  const params = await paramsPromise;
   const s = await getServiceBySlug(params.slug);
   if (!s) return {};
   const seo = pageSeo(s, s.title, s.lead);
   return { ...seo, openGraph: { title: seo.title, description: seo.description, images: s.image ? [s.image] : [] } };
 }
 
-export default async function ServicePage({ params }: Params) {
+export default async function ServicePage({ params: paramsPromise }: Params) {
+  const params = await paramsPromise;
   const [service, content, home, settings, nav] = await Promise.all([getServiceBySlug(params.slug), getServicesContent(), getHome(), getSettings(), getNavigation()]);
   if (!service) notFound();
 

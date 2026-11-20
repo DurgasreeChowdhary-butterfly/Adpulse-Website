@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { SESSION_COOKIE, adminConfigured, verifySessionToken } from '@/services/auth/session';
+import { SESSION_COOKIE, adminConfigured, fromThisSite, verifySessionToken } from '@/services/auth/session';
 
 /**
+ * Next.js proxy (formerly "middleware"; renamed in Next.js 16). Runs on the Node.js runtime.
  * Protects every /admin page and /api/admin endpoint with the admin session cookie
  * (same rules in development and production).
  * - Not signed in: pages redirect to /admin/login, APIs answer 401.
@@ -10,13 +11,13 @@ import { SESSION_COOKIE, adminConfigured, verifySessionToken } from '@/services/
  */
 const PUBLIC_PATHS = ['/admin/login', '/api/admin/login', '/api/admin/logout'];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
   const isApi = pathname.startsWith('/api/admin');
 
   if (isApi && !['GET', 'HEAD', 'OPTIONS'].includes(req.method)) {
     const origin = req.headers.get('origin');
-    if (origin && new URL(origin).host !== req.headers.get('host')) {
+    if (origin && !fromThisSite(origin, req.headers)) {
       return NextResponse.json({ error: 'Cross-site request blocked' }, { status: 403 });
     }
   }
