@@ -139,9 +139,13 @@ export const cloudStorage: MediaStorage = {
 
 /* ---------------- S3-compatible object storage ----------------
  * Works with Cloudflare R2, AWS S3, Backblaze B2, DigitalOcean Spaces, MinIO, …
- * MEDIA_STORAGE=s3 + S3_BUCKET, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_PUBLIC_URL
+ * MEDIA_STORAGE=s3 + S3_BUCKET, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY
  * (+ S3_ENDPOINT for anything other than AWS, S3_REGION, optional S3_FORCE_PATH_STYLE=true).
- * Files are stored under uploads/ and served from S3_PUBLIC_URL (the bucket's public URL or a CDN domain).
+ * Files are stored under uploads/ in the bucket.
+ * S3_PUBLIC_URL decides where browsers load them from:
+ *   - "/media" (default): the bucket stays PRIVATE and the website serves each file through
+ *     app/media/[...key]/route.ts (same domain, no public bucket, no DNS changes).
+ *   - an https URL: a public bucket URL or CDN/custom domain that serves the bucket directly.
  */
 const CONTENT_TYPES: Record<string, string> = {
   jpg: 'image/jpeg',
@@ -153,14 +157,26 @@ const CONTENT_TYPES: Record<string, string> = {
   avif: 'image/avif',
 };
 
+/** Object keys the website may store and serve: uploads/<safe-name>.<image-ext>. Nothing else in the bucket is reachable. */
+export const MEDIA_KEY = /^uploads\/[a-z0-9][a-z0-9.\-]*\.(jpe?g|png|webp|gif|svg|avif)$/;
+
+/** Content type decided by our own allow-list (never by what is stored in the bucket). */
+export function contentTypeFor(name: string): string | null {
+  return CONTENT_TYPES[name.split('.').pop()?.toLowerCase() ?? ''] ?? null;
+}
+
 function s3Config() {
-  const { S3_BUCKET: bucket, S3_ACCESS_KEY_ID: accessKeyId, S3_SECRET_ACCESS_KEY: secretAccessKey, S3_PUBLIC_URL: publicUrl } = process.env;
-  if (!bucket || !accessKeyId || !secretAccessKey || !publicUrl) {
-    throw new Error('S3 storage is not configured. Set S3_BUCKET, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY and S3_PUBLIC_URL.');
+  const { S3_BUCKET: bucket, S3_ACCESS_KEY_ID: accessKeyId, S3_SECRET_ACCESS_KEY: secretAccessKey } = process.env;
+  const publicUrl = (process.env.S3_PUBLIC_URL || '/media').replace(/\/+$/, '');
+  if (!bucket || !accessKeyId || !secretAccessKey) {
+    throw new Error('S3 storage is not configured. Set S3_BUCKET, S3_ACCESS_KEY_ID and S3_SECRET_ACCESS_KEY.');
+  }
+  if (!/^(\/[a-z0-9\-/]*|https:\/\/\S+)$/i.test(publicUrl)) {
+    throw new Error('S3_PUBLIC_URL must be a site path such as /media, or an https:// URL.');
   }
   return {
     bucket,
-    publicUrl: publicUrl.replace(/\/+$/, ''),
+    publicUrl,
     client: {
       region: process.env.S3_REGION || 'auto',
       endpoint: process.env.S3_ENDPOINT || undefined,
@@ -185,8 +201,64 @@ async function s3() {
 function s3KeyOf(url: string, publicUrl: string): string {
   if (!url.startsWith(`${publicUrl}/`)) throw new Error('Not a media library file.');
   const key = url.slice(publicUrl.length + 1);
-  if (!/^uploads\/[a-z0-9.\-]+$/.test(key) || !ALLOWED_IMAGE.test(key)) throw new Error('Not a media library file.');
+  if (!MEDIA_KEY.test(key)) throw new Error('Not a media library file.');
   return key;
+}
+
+export type S3Read =
+  | { status: 200; body: ReadableStream; etag?: string; lastModified?: Date; size?: number }
+  | { status: 304; etag?: string };
+
+/**
+ * Reads one uploaded image from the (private) bucket for app/media/[...key]/route.ts.
+ * Returns null when it does not exist. The key must already be validated with MEDIA_KEY.
+ */
+export async function readS3Object(key: string, ifNoneMatch?: string | null): Promise<S3Read | null> {
+  const { mod, client, bucket } = await s3();
+  try {
+    const out = await client.send(new mod.GetObjectCommand({ Bucket: bucket, Key: key, IfNoneMatch: ifNoneMatch || undefined }));
+    if (!out.Body) return null;
+    return { status: 200, body: out.Body.transformToWebStream() as ReadableStream, etag: out.ETag, lastModified: out.LastModified, size: out.ContentLength };
+  } catch (e) {
+    const err = e as { name?: string; $metadata?: { httpStatusCode?: number } };
+    const status = err.$metadata?.httpStatusCode;
+    if (status === 304 || err.name === 'NotModified') return { status: 304, etag: ifNoneMatch ?? undefined };
+    if (status === 404 || err.name === 'NoSuchKey' || err.name === 'NotFound') return null;
+    throw e;
+  }
+}
+
+/**
+ * Checks the file CONTENT matches its image type (not just the extension), so e.g. an HTML page
+ * renamed to .png is refused. SVGs must be real SVG markup without scripts or event handlers.
+ */
+export function looksLikeImage(bytes: Uint8Array, filename: string): boolean {
+  const ext = filename.split('.').pop()?.toLowerCase() ?? '';
+  const at = (offset: number, ...sig: number[]) => sig.every((b, i) => bytes[offset + i] === b);
+  const ascii = (offset: number, text: string) => at(offset, ...Array.from(text, (c) => c.charCodeAt(0)));
+  switch (ext) {
+    case 'jpg':
+    case 'jpeg':
+      return at(0, 0xff, 0xd8, 0xff);
+    case 'png':
+      return at(0, 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a);
+    case 'gif':
+      return ascii(0, 'GIF87a') || ascii(0, 'GIF89a');
+    case 'webp':
+      return ascii(0, 'RIFF') && ascii(8, 'WEBP');
+    case 'avif': {
+      if (!ascii(4, 'ftyp')) return false;
+      const head = new TextDecoder('latin1').decode(bytes.subarray(8, 64));
+      return head.includes('avif') || head.includes('avis');
+    }
+    case 'svg': {
+      const text = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
+      if (!/<svg[\s>]/i.test(text)) return false;
+      return !/<script|<foreignObject|javascript:|\son[a-z]+\s*=/i.test(text);
+    }
+    default:
+      return false;
+  }
 }
 
 export const s3Storage: MediaStorage = {

@@ -1,7 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-/** Loads .env.local / .env for command-line scripts (Next.js does this for the app itself). */
+/**
+ * Loads .env.local / .env for command-line scripts (Next.js does this for the app itself).
+ * Scripts (migrate, seed, verify, export, restore) prefer DIRECT_DATABASE_URL when it is set:
+ * Neon recommends a direct (non-pooled) connection for schema changes, while the website itself
+ * keeps using the pooled DATABASE_URL.
+ */
 export function loadEnv() {
   for (const file of ['.env.local', '.env']) {
     const full = path.join(process.cwd(), file);
@@ -13,8 +18,9 @@ export function loadEnv() {
       if (process.env[m[1]] === undefined) process.env[m[1]] = value;
     }
   }
+  if (process.env.DIRECT_DATABASE_URL) process.env.DATABASE_URL = process.env.DIRECT_DATABASE_URL;
   if (!process.env.DATABASE_URL) {
-    console.error('DATABASE_URL is not set. Add it to .env.local or the environment.');
+    console.error('DATABASE_URL (or DIRECT_DATABASE_URL) is not set. Add it to .env.local or the environment.');
     process.exit(1);
   }
 }

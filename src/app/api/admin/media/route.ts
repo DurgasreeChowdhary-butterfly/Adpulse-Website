@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { writesAllowed } from '@/services/content/admin';
-import { ALLOWED_IMAGE, MAX_IMAGE_BYTES, mediaStorage } from '@/services/media/storage';
+import { ALLOWED_IMAGE, MAX_IMAGE_BYTES, looksLikeImage, mediaStorage } from '@/services/media/storage';
 import { forgetAlt, listMedia, moveAlt, replaceReferences, setAlt, usageOf } from '@/services/media';
 
 export const dynamic = 'force-dynamic';
@@ -29,6 +29,9 @@ export async function POST(req: Request) {
   if (!(file instanceof File)) return fail('No file', 400);
   if (!ALLOWED_IMAGE.test(file.name)) return fail('Images only (jpg, png, webp, gif, svg, avif).', 415);
   if (file.size > MAX_IMAGE_BYTES) return fail('Max 5 MB.', 413);
+  if (!looksLikeImage(new Uint8Array(await file.arrayBuffer()), file.name)) {
+    return fail('This file is not a valid image of that type (SVGs may not contain scripts).', 415);
+  }
 
   try {
     const storage = mediaStorage();
