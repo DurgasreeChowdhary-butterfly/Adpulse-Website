@@ -12,7 +12,7 @@ This guide takes the site from this repository to a Hostinger **managed Node.js 
 |---|---|
 | Hostinger plan with **Node.js web apps** | Business Web Hosting or a Cloud plan. VPS also works but needs manual setup (PM2 and Nginx), which this guide does not cover. |
 | **PostgreSQL** database | Hostinger's managed Node.js hosting does not include PostgreSQL (its built-in databases are MySQL). Use an external provider such as [Neon](https://neon.tech) or Supabase. |
-| **S3-compatible object storage** for uploaded images | Recommended: [Cloudflare R2](https://developers.cloudflare.com/r2/) (no download fees). AWS S3, Backblaze B2 and DigitalOcean Spaces also work. Uploads are **never** stored on the Hostinger server, because its app folder is replaced on every deploy. |
+| **S3-compatible object storage** for uploaded images | Recommended: [Cloudflare R2](https://developers.cloudflare.com/r2/) (no download fees). AWS S3, Backblaze B2 and DigitalOcean Spaces also work. The bucket stays **private**: the website serves each image itself at `/media/uploads/<file>`. Uploads are **never** stored on the Hostinger server, because its app folder is replaced on every deploy. |
 | GitHub repository | Hostinger deploys from the repo, either connected to GitHub or uploaded as a ZIP. |
 | (Later) [Resend](https://resend.com) account | Optional. Without it, enquiries are still saved and visible in the admin, but no email is sent. |
 
@@ -25,19 +25,23 @@ Versions: **Next.js 16.4**, **React 19**, **Node.js 22.x** (Next.js 16 needs Nod
 ### 2.1 PostgreSQL (Neon example)
 1. Create a project. Choose a region close to India, e.g. *AWS ap-south-1 (Mumbai)* or Singapore.
 2. Copy the **pooled** connection string (the host contains `-pooler`). Keep `?sslmode=require` at the end.
-   This becomes `DATABASE_URL`.
+   This becomes `DATABASE_URL` on Hostinger.
+3. For the database commands on your computer (step 3), also copy the **direct** string: Neon → **Connect**, turn **Connection pooling OFF**. This becomes `DIRECT_DATABASE_URL`, and it is only used on your computer.
 
 ### 2.2 Image storage (Cloudflare R2 example)
-1. R2 → **Create bucket**, e.g. `adpulse-media`.
-2. Bucket → Settings → **Public access**: connect a custom domain (recommended, e.g. `media.<your-domain>`) or enable the `r2.dev` URL. This public base URL becomes `S3_PUBLIC_URL`, with no trailing slash.
-3. R2 → **Manage API tokens** → create a token with **Object Read & Write** limited to this bucket.
-   Copy the *Access Key ID*, the *Secret Access Key* and the *S3 endpoint* (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`).
+R2 has a free monthly allowance (10 GB storage, 1 million writes, 10 million reads, no download fees). Activating it adds a $0 subscription that renews automatically and is billed to the account's payment method only for usage above the allowance.
+
+1. R2 → **Create bucket**, e.g. `adpulse-media`, with the **Standard** storage class (the free allowance does not cover Infrequent Access).
+2. **Keep the bucket private.** Leave *Public Development URL* (`r2.dev`) disabled and add no custom domain: browsers never reach the bucket directly. The website reads each image with its key and serves it at `/media/uploads/<file>` (see `src/app/media/[...key]/route.ts`).
+3. R2 → **Manage API tokens** → **Create Account API token**: permission **Object Read & Write**, **Apply to specific buckets only** → this bucket.
+   Copy the *Access Key ID* (32 characters) and the *Secret Access Key* (64 characters), not the token value. They are shown only once.
+   The S3 endpoint is `https://<ACCOUNT_ID>.r2.cloudflarestorage.com` (shown in the bucket's Settings as *S3 API*, without the bucket name).
 
 ---
 
 ## 3. Prepare the database (from your computer, once)
 
-The migration and seed commands run on **your computer**, not on Hostinger. Put the production `DATABASE_URL` in `.env.local`, which git ignores. Never commit it.
+The migration and seed commands run on **your computer**, not on Hostinger. Put the production **direct** connection string in `.env.local` as `DIRECT_DATABASE_URL` (the scripts use it instead of `DATABASE_URL`). `.env.local` is ignored by git. Never commit it.
 
 ```bash
 npm install
@@ -51,7 +55,7 @@ The seed command:
 - **refuses to run if the database already has content**, so it can't overwrite edits made in production;
 - never changes the JSON files.
 
-Then remove `DATABASE_URL` from `.env.local` again if you don't want your computer pointing at production.
+Then remove `DIRECT_DATABASE_URL` (and any `DATABASE_URL`) from `.env.local` again if you don't want your computer pointing at production.
 
 ---
 
@@ -98,7 +102,6 @@ hPanel → your Node.js app → **Environment variables**. Add them **before the
 | `S3_SECRET_ACCESS_KEY` | From step 2.2 |
 | `S3_ENDPOINT` | `https://<ACCOUNT_ID>.r2.cloudflarestorage.com` (leave empty for AWS S3) |
 | `S3_REGION` | `auto` for R2 (AWS: e.g. `ap-south-1`) |
-| `S3_PUBLIC_URL` | Public bucket URL or custom domain, no trailing slash |
 
 Generate random values with:
 `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
@@ -110,9 +113,10 @@ Generate random values with:
 | `DATABASE_POOL_MAX` | Default 5 is fine for one server process. |
 | `RESEND_API_KEY`, `ENQUIRY_NOTIFICATION_EMAIL`, `ENQUIRY_FROM_EMAIL` | Once Resend is set up and your sending domain is verified. Until all three are set, enquiries are saved with status "not configured" and no email is sent. |
 | `S3_FORCE_PATH_STYLE` | `true` only if your storage provider needs it (e.g. MinIO). |
+| `S3_PUBLIC_URL` | Leave **unset** (recommended): images are served by the website at `/media/...` from the private bucket. Set it only if you later serve the bucket directly from a public or custom domain: that `https://` URL, no trailing slash. Decide this **before** uploading images: saved image URLs keep the address they were uploaded with. |
 
 ### Leave empty on Hostinger
-`ALLOW_CONTENT_WRITES`, `BLOB_READ_WRITE_TOKEN`, `CONTENT_API_URL`, `CONTENT_API_TOKEN`, `PORT`, `NODE_ENV`.
+`DIRECT_DATABASE_URL` (computer only), `ALLOW_CONTENT_WRITES`, `BLOB_READ_WRITE_TOKEN`, `CONTENT_API_URL`, `CONTENT_API_TOKEN`, `PORT`, `NODE_ENV`.
 
 `.env.example` lists and explains every variable.
 
@@ -129,7 +133,9 @@ Generate random values with:
 | `/admin` | Redirects to `/admin/login`; the correct password signs in |
 | Admin dashboard | Shows **"Content source: Database"** and **"Saving: enabled"** |
 | Edit a small text in the admin, save, reload the public page | The change appears; change it back afterwards |
-| Admin → Media → upload an image | The image URL starts with your `S3_PUBLIC_URL` and the image opens |
+| Admin → Media → upload an image | The image URL starts with `/media/uploads/` and the image opens on the site's own domain |
+| `https://<domain>/media/uploads/does-not-exist.png` | `404` |
+| A text file renamed to `.png`, uploaded in Admin → Media | Refused ("not a valid image") |
 | Free audit form (header button) | Shows the success message; the request appears in **Admin → Enquiries** (notification "not configured" until Resend is set up) |
 | Newsletter form (footer) | Success message; the subscriber appears in Admin → Enquiries |
 | `https://<domain>/api/admin/content/services` in a private window | `401` (not signed in) |
@@ -165,5 +171,6 @@ Generate random values with:
 
 - **One shared admin password.** Named accounts need an auth provider, which is planned work.
 - **Login lockout** (5 wrong tries leads to a 15-minute pause) is kept in the server's memory. It resets when the app restarts.
-- **Image types:** uploads accept jpg, png, webp, gif, svg and avif up to 5 MB. Files are served from the storage domain, not the website domain.
+- **Image types:** uploads accept jpg, png, webp, gif, svg and avif up to 5 MB. The file content must match its type, and SVGs containing scripts are refused.
+- **Image delivery:** uploaded images are served by the website at `/media/uploads/<file>` from the private bucket, with a one-year browser cache (file names are unique and never reused). Each uncached view counts as one R2 read (10 million free per month). Images shipped with the code stay at `/images/...`.
 - **Admin protection** lives in `src/proxy.ts`, the Next.js 16 replacement for `middleware.ts`. It runs on the Node.js runtime. A second session check in the admin panel layout means admin pages never render without a valid login.
