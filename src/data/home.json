@@ -49,12 +49,12 @@
   },
   "differentiators": {
     "eyebrow": "What makes Adpulse different",
-    "title": "Five things you get with us that most agencies don't offer.",
-    "description": "Built around the questions business owners ask us most: who is working on my account, what are they changing, and what is it returning?",
+    "title": "More than an agency. A team invested in your growth.",
+    "description": "We take the time to understand your business, your goals, and what success looks like for you. From building your digital presence to generating quality leads, we're here to make every part of your marketing work together.",
     "feature": {
-      "tag": "01 · AI on your account",
-      "title": "AI reviews your campaigns every day, and a specialist approves every change.",
-      "text": "Our tools catch wasted spend and new opportunities early, so your budget moves to what's working before the month is over.",
+      "tag": "01 · Your goals come first. Always.",
+      "title": "A team that understands your business",
+      "text": "We get to know your business, audience, and challenges before building a strategy that makes sense for you. No guesswork, just marketing with a clear purpose.",
       "actions": [
         {
           "icon": "i-pause",
@@ -76,23 +76,23 @@
     "points": [
       {
         "icon": "i-layers",
-        "title": "One team, full funnel",
-        "text": "Ads, SEO, website and social are run from the same plan."
+        "title": "Everything under one roof",
+        "text": "All your digital needs, one connected team."
       },
       {
         "icon": "i-eye",
-        "title": "Live, open reporting",
-        "text": "You see the dashboard we use, plus a weekly review call."
+        "title": "Clear and honest communication",
+        "text": "No guesswork. No surprises."
       },
       {
         "icon": "i-badge",
-        "title": "Certified specialists",
-        "text": "Google, Meta and analytics experts handle your account in-house."
+        "title": "Experienced people, fresh ideas",
+        "text": "Good people behind every great idea."
       },
       {
         "icon": "i-target",
-        "title": "Revenue first",
-        "text": "We plan around cost per lead and sales, not impressions."
+        "title": "Focused on growth that matters",
+        "text": "More than clicks. Real business results."
       }
     ]
   },
