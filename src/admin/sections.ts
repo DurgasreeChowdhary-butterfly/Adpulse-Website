@@ -20,14 +20,14 @@ export const ADMIN_SECTIONS: AdminSection[] = [
   { slug: 'homepage', label: 'Homepage', icon: 'n-home', collection: 'home', preview: '/', description: 'Hero, callouts and stats, differentiators, why choose us and the closing call to action.' },
   { slug: 'about', label: 'About', icon: 'c-pin', collection: 'about', preview: '/about', description: 'About statement, photo, beliefs, statistics and About page SEO.' },
   { slug: 'services', label: 'Services', icon: 's-perf', collection: 'services', preview: '/services', description: 'Add, edit, delete and reorder services: hero, what\'s included, process, related services, images, icons and SEO.' },
-  { slug: 'case-studies', label: 'Case Studies', icon: 'i-target', collection: 'case-studies', preview: '/case-studies', description: 'Add, edit, delete and reorder case studies: results, metrics, images, featured, homepage visibility and SEO.' },
+  { slug: 'case-studies', label: 'Case Studies', icon: 'i-target', collection: 'case-studies', preview: '/case-studies', description: 'Add, edit, delete and reorder case studies: card, detail page (overview, challenge, strategy, execution, results, gallery), images, featured, homepage visibility and SEO.' },
   { slug: 'insights', label: 'Insights / Blog', icon: 's-creative', collection: 'insights', preview: '/insights', description: 'Write and publish articles: draft or published, author, date, cover image and SEO.' },
   { slug: 'industries', label: 'Industries', icon: 'n-factory', collection: 'industries', preview: '/industries', description: 'Add, edit, delete and reorder industries and the Industries page.' },
   { slug: 'clients', label: 'Client Logos', icon: 'i-star', collection: 'clients', preview: '/', description: 'Logo strip: add, replace, reorder and link client logos.' },
   { slug: 'testimonials', label: 'Testimonials', icon: 's-social', collection: 'testimonials', preview: '/', description: 'Client quotes: add, reorder, hide individual quotes, and show or hide the section.' },
   { slug: 'media', label: 'Media Library', icon: 'i-eye', description: 'Upload, replace, describe (alt text) and delete images.' },
-  { slug: 'settings', label: 'Website Settings', icon: 's-strategy', collection: 'settings', preview: '/', description: 'Company name, phones, emails, address, socials, audit form, 404 page and SEO defaults.' },
-  { slug: 'navigation', label: 'Navigation & Footer', icon: 'i-menu', collection: 'navigation', preview: '/', description: 'Header menu, mobile menu, breadcrumbs and footer links.' },
+  { slug: 'settings', label: 'Website Settings', icon: 's-strategy', collection: 'settings', preview: '/', description: 'Company name, logo, phones, emails, address, socials, audit form, 404 page and SEO defaults.' },
+  { slug: 'navigation', label: 'Navigation & Footer', icon: 'i-menu', collection: 'navigation', preview: '/', description: 'Header menu (including the Home link), mobile menu, breadcrumbs, footer links and back-to-top label.' },
 ];
 
 export const sectionBySlug = (slug: string) => ADMIN_SECTIONS.find((s) => s.slug === slug);

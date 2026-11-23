@@ -93,7 +93,7 @@ export default async function ServicePage({ params: paramsPromise }: Params) {
             eyebrow={page.relatedEyebrow}
             title={page.relatedTitle}
             description={
-              <Link className="link" href="/services">
+              <Link className="link on" href="/services">
                 {page.relatedLinkLabel} <Icon name="i-arrow" />
               </Link>
             }

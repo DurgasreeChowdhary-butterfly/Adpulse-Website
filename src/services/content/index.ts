@@ -2,14 +2,15 @@ import 'server-only';
 import { cache } from 'react';
 import type { CollectionKey, ContentMap, Service, CaseStudy, Insight } from '@/types/content';
 import { activeSource } from './sources';
+import { withDefaults } from './defaults';
 
 /**
  * The only way pages and components get content.
- * Today it reads src/data/*.json; set CONTENT_SOURCE=api to read from a backend instead.
+ * Reads the active source (CONTENT_SOURCE: json | db | api); fields added later get their defaults.
  * `cache` dedupes reads within a single request.
  */
 export const getCollection = cache(async <K extends CollectionKey>(key: K): Promise<ContentMap[K]> => {
-  return activeSource().read(key);
+  return withDefaults(key, await activeSource().read(key));
 });
 
 export const getSettings = () => getCollection('settings');

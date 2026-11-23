@@ -59,6 +59,13 @@ export interface SiteSettings {
   /** Consent line under the audit + newsletter forms. Empty consentText = hidden. */
   privacy: { consentText: string; policyUrl: string };
   notFound: { eyebrow: string; title: string; text: string; primaryLabel: string; secondaryLabel: string; secondaryHref: string };
+  /** Optional logo images. Empty = the built-in Adpulse logo (public/brand/logo.svg). */
+  brand: {
+    /** Logo for light backgrounds (header once scrolled) */
+    logo: string | null;
+    /** Logo for dark backgrounds (header over dark heroes, mobile menu, footer) */
+    logoOnDark: string | null;
+  };
 }
 
 /* ---------- navigation.json ---------- */
@@ -69,7 +76,7 @@ export interface NavItem extends LinkItem {
 export interface Navigation {
   header: {
     items: NavItem[];
-    /** First link in the mobile menu */
+    /** First link in the header menu and the mobile menu */
     homeLabel: string;
     cta: CtaLink;
     mobileCta: CtaLink;
@@ -83,6 +90,8 @@ export interface Navigation {
     companyLinks: LinkItem[];
     /** "{year}" is replaced with the current year */
     copyright: string;
+    /** Screen-reader label of the back-to-top button */
+    backToTopLabel: string;
   };
   breadcrumbs: { home: string; about: string; services: string; caseStudies: string; industries: string; insights: string };
 }
@@ -191,22 +200,26 @@ export type CaseVisual = 'bars' | 'line' | 'map' | 'phone';
 export interface CaseStudy extends SeoFields {
   slug: string;
   title: string;
-  /** Client or project name (kept for reference; not shown on the current cards) */
+  /** Client or project name, shown on the detail page when filled in */
   client: string;
   industry: string;
   /** Filter key from "categories" */
   category: string;
   /** Slugs of the services delivered */
   services: string[];
+  /** Short introduction to the client, shown on the detail page (hidden when empty) */
+  overview: string;
   challenge: string;
   solution: string;
+  /** Execution steps, shown as a numbered list on the detail page (hidden when empty) */
+  execution: string[];
   result: { value: string; label: string };
   metrics: { value: string; label: string }[];
   /** Built-in illustration used until a real project image is supplied */
   visual: CaseVisual;
   image: string | null;
   imageAlt: string;
-  /** Extra project images, stored for a future case-study detail page */
+  /** Extra project images, shown on the detail page (hidden when empty) */
   gallery: { image: string | null; alt: string }[];
   /** Featured studies are listed first */
   featured: boolean;
@@ -222,8 +235,25 @@ export interface CaseStudiesContent {
     sampleNote: string;
     challengeLabel: string;
     solutionLabel: string;
+    /** Link on each case study card */
+    cardLinkLabel: string;
+    /** Label shown next to the numbers of sample case studies */
+    sampleLabel: string;
   };
   page: { eyebrow: string; title: string; description: string } & SeoFields;
+  /** Headings and labels of the case study detail page. Sections without content are hidden. */
+  detailPage: {
+    backLabel: string;
+    overviewTitle: string;
+    clientLabel: string;
+    industryLabel: string;
+    servicesLabel: string;
+    executionTitle: string;
+    resultsEyebrow: string;
+    resultsTitle: string;
+    galleryTitle: string;
+    moreTitle: string;
+  };
   categories: { key: string; label: string }[];
   items: CaseStudy[];
 }

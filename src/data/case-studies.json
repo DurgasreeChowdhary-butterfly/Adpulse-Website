@@ -5,7 +5,9 @@
     "description": "The challenge each client brought us, what we changed, and what happened to their numbers.",
     "sampleNote": "Sample case studies for layout. Replace with real client results before launch.",
     "challengeLabel": "Challenge",
-    "solutionLabel": "What we did"
+    "solutionLabel": "What we did",
+    "cardLinkLabel": "View case study",
+    "sampleLabel": "Sample project"
   },
   "page": {
     "eyebrow": "Case studies",
@@ -13,6 +15,18 @@
     "description": "Every project starts with a clear problem and ends with numbers. Filter by service to see the work closest to yours.",
     "metaTitle": "Case Studies",
     "metaDescription": ""
+  },
+  "detailPage": {
+    "backLabel": "All case studies",
+    "overviewTitle": "Client overview",
+    "clientLabel": "Client",
+    "industryLabel": "Industry",
+    "servicesLabel": "Services",
+    "executionTitle": "Execution",
+    "resultsEyebrow": "Results",
+    "resultsTitle": "What changed",
+    "galleryTitle": "Project gallery",
+    "moreTitle": "More case studies"
   },
   "categories": [
     {
@@ -40,8 +54,10 @@
       "industry": "Education",
       "category": "pm",
       "services": [],
+      "overview": "",
       "challenge": "Lead costs were rising and few enquiries visited campus.",
       "solution": "Rebuilt search and Meta campaigns around course intent, with instant WhatsApp follow-up.",
+      "execution": [],
       "result": {
         "value": "1,500+",
         "label": "qualified leads in 60 days"
@@ -77,8 +93,10 @@
       "industry": "Retail · Optical",
       "category": "seo",
       "services": [],
+      "overview": "",
       "challenge": "Six stores were hidden on Google Maps behind bigger chains.",
       "solution": "Optimised every Google Business Profile, rebuilt location pages and ran a review drive.",
+      "execution": [],
       "result": {
         "value": "270+",
         "label": "store walk-ins in 45 days"
@@ -114,8 +132,10 @@
       "industry": "E-commerce · D2C",
       "category": "pm",
       "services": [],
+      "overview": "",
       "challenge": "Sales had plateaued and each new customer cost more.",
       "solution": "Moved to Performance Max with a clean product feed and fresh creative every two weeks.",
+      "execution": [],
       "result": {
         "value": "4.6x",
         "label": "return on ad spend"
@@ -151,8 +171,10 @@
       "industry": "IT & SaaS",
       "category": "seo",
       "services": [],
+      "overview": "",
       "challenge": "Organic search sent almost no demo requests.",
       "solution": "Keyword clusters, 40 in-depth articles and technical fixes.",
+      "execution": [],
       "result": {
         "value": "+340%",
         "label": "organic traffic in 8 months"
@@ -188,8 +210,10 @@
       "industry": "Real Estate",
       "category": "web",
       "services": [],
+      "overview": "",
       "challenge": "Most visitors were on phones, and the old site lost them.",
       "solution": "A mobile-first site with project pages, tour links and a two-step enquiry form.",
+      "execution": [],
       "result": {
         "value": "3.1x",
         "label": "more website enquiries"
@@ -225,8 +249,10 @@
       "industry": "Healthcare",
       "category": "web",
       "services": [],
+      "overview": "",
       "challenge": "Appointments came only by phone, and peak-hour calls were missed.",
       "solution": "Doctor profiles, online booking and local SEO pages for every department.",
+      "execution": [],
       "result": {
         "value": "+58%",
         "label": "online appointment bookings"

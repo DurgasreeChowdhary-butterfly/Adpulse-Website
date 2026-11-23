@@ -16,7 +16,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const navServices = services.map(({ slug, title, summary, icon }) => ({ slug, title, summary, icon }));
   return (
     <>
-      <Header nav={navigation.header} services={navServices} />
+      <Header nav={navigation.header} services={navServices} brand={settings.brand} />
       {children}
       <Footer footer={navigation.footer} settings={settings} services={services} />
       <AuditModal copy={settings.audit} serviceOptions={services.map((s) => s.title)} privacy={settings.privacy} />

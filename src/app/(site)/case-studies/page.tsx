@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getCaseStudiesContent, getHome, getNavigation, getSettings, pageSeo } from '@/services/content';
 import { PageHero } from '@/components/sections/PageHero';
-import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
+import { CaseStudiesGrid } from '@/components/sections/CaseStudiesGrid';
 import { CtaSection } from '@/components/sections/CtaSection';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -21,7 +21,7 @@ export default async function CaseStudiesPage() {
         description={data.page.description}
         primaryCta={home.cta.button}
       />
-      <CaseStudiesSection data={data} showHead={false} />
+      <CaseStudiesGrid data={data} />
       <CtaSection cta={home.cta} contact={settings.contact} labels={settings.contactLabels} />
     </>
   );

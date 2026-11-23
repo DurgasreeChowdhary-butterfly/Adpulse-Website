@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Navigation, Service } from '@/types/content';
+import type { Navigation, Service, SiteSettings } from '@/types/content';
 import { Icon } from '@/components/ui/Icon';
 import { Logo } from '@/components/ui/Logo';
 import { CtaButton } from '@/components/ui/CtaButton';
@@ -12,10 +12,11 @@ import { useScrolled } from '@/hooks/useScrolled';
 interface Props {
   nav: Navigation['header'];
   services: Pick<Service, 'slug' | 'title' | 'summary' | 'icon'>[];
+  brand: SiteSettings['brand'];
 }
 
 /** Fixed header: transparent over dark heroes, white once scrolled. Services dropdown + mobile drawer. */
-export function Header({ nav, services }: Props) {
+export function Header({ nav, services, brand }: Props) {
   const pathname = usePathname();
   const solid = useScrolled(40);
   const [ddOpen, setDdOpen] = useState(false);
@@ -62,15 +63,22 @@ export function Header({ nav, services }: Props) {
 
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
   const currentService = pathname.startsWith('/services/') ? pathname.split('/')[2] : null;
+  // "View all services" is highlighted on the services overview and on every service page.
+  const onServices = pathname === '/services' || pathname.startsWith('/services/');
 
   return (
     <>
       <header className={`hdr${solid ? ' solid' : ''}`} id="hdr">
         <div className="wrap nav">
           <Link href="/" aria-label="Adpulse home">
-            <Logo />
+            <Logo src={brand.logo} srcOnDark={brand.logoOnDark} tone="auto" />
           </Link>
           <ul className="menu" id="menu">
+            <li>
+              <Link href="/" className={isActive('/') ? 'on' : undefined} aria-current={isActive('/') ? 'page' : undefined}>
+                {nav.homeLabel}
+              </Link>
+            </li>
             {nav.items.map((item) =>
               item.dropdown === 'services' ? (
                 <li key={item.label} onMouseEnter={hoverOpen} onMouseLeave={hoverClose}>
@@ -116,7 +124,7 @@ export function Header({ nav, services }: Props) {
               ))}
             </div>
             <div className="dd-foot">
-              <Link href={nav.dropdown.allHref}>
+              <Link href={nav.dropdown.allHref} className={onServices ? 'on' : undefined} aria-current={pathname === nav.dropdown.allHref ? 'page' : undefined}>
                 {nav.dropdown.allLabel} <Icon name="i-arrow" />
               </Link>
               <span>
@@ -140,7 +148,7 @@ export function Header({ nav, services }: Props) {
 
       <div className="drawer" id="drawer" hidden={!drawerOpen} onClick={(e) => (e.target as Element).closest('a,[data-audit]') && setDrawerOpen(false)}>
         <div className="drawer-top">
-          <Logo style={{ color: '#fff' }} />
+          <Logo style={{ color: '#fff' }} src={brand.logo} srcOnDark={brand.logoOnDark} tone="dark" />
           <button className="burger" style={{ display: 'inline-flex' }} aria-label="Close menu" onClick={() => setDrawerOpen(false)}>
             <Icon name="i-x" />
           </button>
@@ -161,7 +169,7 @@ export function Header({ nav, services }: Props) {
                         {s.title}
                       </Link>
                     ))}
-                    <Link className="all" href={nav.dropdown.allHref}>
+                    <Link className={`all${onServices ? ' on' : ''}`} href={nav.dropdown.allHref} aria-current={pathname === nav.dropdown.allHref ? 'page' : undefined}>
                       {nav.dropdown.allLabel} →
                     </Link>
                   </div>

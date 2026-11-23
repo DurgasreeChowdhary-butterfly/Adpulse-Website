@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui/Icon';
 import { Logo } from '@/components/ui/Logo';
 import { withYear } from '@/utils/format';
 import { NewsletterForm } from './NewsletterForm';
+import { BackToTop } from './BackToTop';
 
 interface Props {
   footer: Navigation['footer'];
@@ -17,7 +18,7 @@ export function Footer({ footer, settings, services }: Props) {
       <div className="wrap">
         <div className="f-grid">
           <div>
-            <Logo label={settings.shortName} />
+            <Logo label={settings.shortName} src={settings.brand.logo} srcOnDark={settings.brand.logoOnDark} tone="dark" />
             <p className="about-f">{footer.about}</p>
             <div className="socials">
               {settings.socials.map((s) => (
@@ -90,7 +91,10 @@ export function Footer({ footer, settings, services }: Props) {
         </div>
         <div className="f-bot">
           <span>{withYear(footer.copyright)}</span>
-          <span>{settings.tagline}</span>
+          <span className="f-end">
+            <span>{settings.tagline}</span>
+            <BackToTop label={footer.backToTopLabel} />
+          </span>
         </div>
       </div>
     </footer>

@@ -2,11 +2,12 @@ import type { Client, ClientsContent } from '@/types/content';
 import { Icon } from '@/components/ui/Icon';
 import { rich } from '@/utils/richText';
 
-function LogoTile({ client }: { client: Client }) {
+/** `copy` marks the duplicate strip that keeps the marquee seamless (hidden from screen readers). */
+function LogoTile({ client, copy }: { client: Client; copy: boolean }) {
   const inner = (
     <>
       {client.logo ? (
-        <img src={client.logo} alt={client.name} style={{ maxWidth: '70%', maxHeight: 56, objectFit: 'contain' }} />
+        <img className="lg-img" src={client.logo} alt={copy ? '' : client.name} decoding="async" />
       ) : client.style === 'placeholder' ? (
         <span className="ph">
           <i />
@@ -18,11 +19,13 @@ function LogoTile({ client }: { client: Client }) {
     </>
   );
   return client.website ? (
-    <a className="lg" href={client.website} target="_blank" rel="noopener noreferrer" tabIndex={-1}>
+    <a className="lg" href={client.website} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden={copy || undefined}>
       {inner}
     </a>
   ) : (
-    <div className="lg">{inner}</div>
+    <div className="lg" aria-hidden={copy || undefined}>
+      {inner}
+    </div>
   );
 }
 
@@ -52,7 +55,7 @@ export function Clients({ data }: { data: ClientsContent }) {
       <div className="mq logos" style={{ ['--dur' as string]: '50s' }}>
         <div className="mq-track">
           {strip.map((c, i) => (
-            <LogoTile key={i} client={c} />
+            <LogoTile key={i} client={c} copy={i >= data.items.length} />
           ))}
         </div>
       </div>

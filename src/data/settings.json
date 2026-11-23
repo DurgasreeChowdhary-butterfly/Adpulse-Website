@@ -83,5 +83,9 @@
     "primaryLabel": "Back to home",
     "secondaryLabel": "Our services",
     "secondaryHref": "/services"
+  },
+  "brand": {
+    "logo": null,
+    "logoOnDark": null
   }
 }

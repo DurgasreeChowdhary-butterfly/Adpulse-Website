@@ -10,34 +10,64 @@
   },
   "items": [
     {
-      "name": "KMS",
-      "logo": null,
+      "name": "Nishada Group",
+      "logo": "/images/client-nishada-group.png",
       "website": "",
-      "style": "wordmark"
+      "style": "logo"
+    },
+    {
+      "name": "Baashyaam",
+      "logo": "/images/client-baashyaam.png",
+      "website": "",
+      "style": "logo"
+    },
+    {
+      "name": "Srividya School",
+      "logo": "/images/client-srividya-school.png",
+      "website": "",
+      "style": "logo"
     },
     {
       "name": "Kapleshwar Optics",
-      "logo": null,
+      "logo": "/images/client-kapleshwar-optics.png",
       "website": "",
-      "style": "wordmark-alt"
+      "style": "logo"
     },
     {
-      "name": "Client logo",
-      "logo": null,
+      "name": "Sri Chakra Maritime College",
+      "logo": "/images/client-sri-chakra-maritime-college.png",
       "website": "",
-      "style": "placeholder"
+      "style": "logo"
     },
     {
-      "name": "Client logo",
-      "logo": null,
+      "name": "PolicyX",
+      "logo": "/images/client-policyx.png",
       "website": "",
-      "style": "placeholder"
+      "style": "logo"
     },
     {
-      "name": "Client logo",
-      "logo": null,
+      "name": "Ray-Ban",
+      "logo": "/images/client-ray-ban.png",
       "website": "",
-      "style": "placeholder"
+      "style": "logo"
+    },
+    {
+      "name": "Verdura",
+      "logo": "/images/client-verdura.png",
+      "website": "",
+      "style": "logo"
+    },
+    {
+      "name": "KMS",
+      "logo": "/images/client-kms.png",
+      "website": "",
+      "style": "logo"
+    },
+    {
+      "name": "Gitanjali International School",
+      "logo": "/images/client-gitanjali-international-school.png",
+      "website": "",
+      "style": "logo"
     }
   ]
 }

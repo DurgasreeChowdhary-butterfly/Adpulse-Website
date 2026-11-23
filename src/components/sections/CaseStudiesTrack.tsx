@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { CaseStudiesContent } from '@/types/content';
 import { Icon } from '@/components/ui/Icon';
@@ -8,7 +9,7 @@ import { caseScene } from '@/utils/caseScenes';
 interface Props {
   categories: CaseStudiesContent['categories'];
   items: CaseStudiesContent['items'];
-  labels: { challenge: string; solution: string; sampleNote: string };
+  labels: { challenge: string; solution: string; sampleNote: string; cardLink: string; sample: string };
 }
 
 /** Filter chips + horizontal, snap-scrolling case study cards with arrows and a progress bar. */
@@ -71,6 +72,7 @@ export function CaseStudiesTrack({ categories, items, labels }: Props) {
               )}
               <span className="ind-tag">{c.industry}</span>
               <div className="res">
+                {c.isSample && <span className="sample-tag">{labels.sample}</span>}
                 <b className="num">{c.result.value}</b>
                 <span>{c.result.label}</span>
               </div>
@@ -97,6 +99,9 @@ export function CaseStudiesTrack({ categories, items, labels }: Props) {
                   </div>
                 ))}
               </div>
+              <Link className="link cb-link" href={`/case-studies/${c.slug}`}>
+                {labels.cardLink} <Icon name="i-arrow" />
+              </Link>
             </div>
           </article>
         ))}

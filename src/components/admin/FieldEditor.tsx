@@ -47,8 +47,14 @@ const HINTS: Record<string, string> = {
   enabled: 'Shows this section on the homepage.',
   isSample: 'Marks placeholder content; the site shows a "sample" note.',
   website: 'Optional, e.g. https://client.com',
-  gallery: 'Stored for a future case-study detail page; not shown on the current cards.',
-  client: 'For reference; not shown on the current cards.',
+  gallery: 'Extra project images, shown on the case study page. Empty = section hidden.',
+  client: 'Client or project name, shown on the case study page. Empty = hidden.',
+  overview: 'Short introduction to the client, shown on the case study page. Empty = hidden.',
+  execution: 'Steps of the work, shown as a numbered list on the case study page. Empty = hidden.',
+  homeLabel: 'First link in the header menu and the mobile menu.',
+  backToTopLabel: 'Read out by screen readers for the arrow button in the footer.',
+  cardLinkLabel: 'Link text on each card.',
+  brand: 'Optional uploaded logos. Leave a field empty to use the built-in Adpulse logo there.',
   stat: 'Badge on the service page photo. Leave the value empty to hide it.',
   consentText: 'Short line under the audit and newsletter forms, e.g. By sending this form you agree to our Privacy Policy. Empty = hidden.',
   policyUrl: 'Privacy Policy link used in the consent line, e.g. /privacy',
@@ -66,6 +72,16 @@ const LABELS: Record<string, string> = {
   otherEmails: 'Other emails',
   ogImage: 'Social share image',
   href: 'Href (link)',
+  logoOnDark: 'Logo for dark backgrounds',
+  backToTopLabel: 'Back-to-top button label',
+};
+
+/** Hints for one specific field, keyed by "<collection>:<path without list indexes>". They win over HINTS. */
+const PATH_HINTS: Record<string, string> = {
+  'settings:brand.logo': 'Logo for light backgrounds (header once scrolled). Use a wide logo with a transparent background (SVG or PNG). Empty = built-in logo.',
+  'settings:brand.logoOnDark': 'Logo for dark backgrounds (header over the dark page tops, mobile menu, footer). Use a light version. Empty = built-in logo.',
+  'clients:items.logo': 'Transparent PNG or SVG works best; it is fitted into the same box as the other logos. Style must be "Logo image".',
+  'case-studies:items.image': 'Main image on the card and the case study page. Empty = the built-in illustration chosen under Visual.',
 };
 
 const STATIC_OPTIONS: Record<string, Option[]> = {
@@ -107,12 +123,13 @@ const TEMPLATES: Record<string, Json> = {
   metrics: { value: '', label: '' },
   socials: { label: '', icon: '', url: '' },
   body: '',
+  execution: '',
 };
 
 /** Image fields and the alt field next to them that gets filled from the media library. */
-const IMAGE_KEY = /(^image$|image$|^cover$|^logo$|ogImage)/i;
+const IMAGE_KEY = /(^image$|image$|^cover$|^logo$|^logoOnDark$|ogImage)/i;
 const ALT_FOR: Record<string, string> = { image: 'imageAlt', cover: 'coverAlt' };
-const LONG_KEY = /(description|summary|lead|text|excerpt|audience|challenge|solution|quote|about|note|address|line)$/i;
+const LONG_KEY = /(description|summary|lead|text|excerpt|audience|challenge|solution|overview|quote|about|note|address|line)$/i;
 
 export const humanize = (k: string) =>
   LABELS[k] ??
@@ -179,14 +196,17 @@ interface Props {
 export function FieldEditor({ name, value, onChange, depth = 0, path = [], onPick }: Props) {
   const refs = useContext(RefsContext);
   const label = humanize(name);
-  const hint = HINTS[name];
+  const hint = PATH_HINTS[`${refs.collection}:${path.join('.')}`] ?? HINTS[name];
   const options = useOptions(name, path);
 
   // Images (string path or null)
   if (IMAGE_KEY.test(name) && (typeof value === 'string' || value === null)) {
     return (
       <div className="fe-field">
-        <label>{label}</label>
+        <label>
+          {label}
+          {hint && <small>{hint}</small>}
+        </label>
         <div className="fe-img">
           <div className="pv" style={{ backgroundImage: value ? `url(${value})` : undefined }} />
           <div style={{ display: 'grid', gap: 6 }}>

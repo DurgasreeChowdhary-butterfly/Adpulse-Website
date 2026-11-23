@@ -51,8 +51,11 @@ export const itemSchemas = {
     industry: text,
     category: text,
     services: z.array(text),
+    // Optional: content saved before the detail page existed has no such fields (see defaults.ts).
+    overview: text.optional(),
     challenge: text,
     solution: text,
+    execution: z.array(text).optional(),
     result: obj({ value: text, label: text }),
     metrics: z.array(obj({ value: text, label: text })),
     visual: z.enum(['bars', 'line', 'map', 'phone']),
@@ -122,6 +125,7 @@ export const schemas: { [K in CollectionKey]: z.ZodTypeAny } = {
     newsletter: obj({ label: text, placeholder: text, successText: text }),
     privacy: obj({ consentText: text, policyUrl: text }),
     notFound: obj({ eyebrow: text, title: text, text: text, primaryLabel: text, secondaryLabel: text, secondaryHref: text }),
+    brand: obj({ logo: optionalImage, logoOnDark: optionalImage }).optional(),
   }),
   navigation: obj({
     header: obj({
@@ -138,6 +142,7 @@ export const schemas: { [K in CollectionKey]: z.ZodTypeAny } = {
       contactTitle: text,
       companyLinks: z.array(link),
       copyright: text,
+      backToTopLabel: text.optional(),
     }),
     breadcrumbs: obj({ home: text, about: text, services: text, caseStudies: text, industries: text, insights: text }),
   }),
@@ -209,8 +214,20 @@ export const schemas: { [K in CollectionKey]: z.ZodTypeAny } = {
     items: z.array(itemSchemas.services).superRefine(uniqueSlugs),
   }),
   'case-studies': obj({
-    section: obj({ eyebrow: text, title: text, description: text, sampleNote: text, challengeLabel: text, solutionLabel: text }),
+    section: obj({ eyebrow: text, title: text, description: text, sampleNote: text, challengeLabel: text, solutionLabel: text, cardLinkLabel: text.optional(), sampleLabel: text.optional() }),
     page: obj({ eyebrow: text, title: text, description: text, ...seo }),
+    detailPage: obj({
+      backLabel: text,
+      overviewTitle: text,
+      clientLabel: text,
+      industryLabel: text,
+      servicesLabel: text,
+      executionTitle: text,
+      resultsEyebrow: text,
+      resultsTitle: text,
+      galleryTitle: text,
+      moreTitle: text,
+    }).optional(),
     categories: z.array(obj({ key: text.min(1), label: text })),
     items: z.array(itemSchemas['case-studies']).superRefine(uniqueSlugs),
   }).superRefine((d, ctx) => {

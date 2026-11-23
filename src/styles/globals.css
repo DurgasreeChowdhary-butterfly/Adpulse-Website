@@ -86,6 +86,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .link{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px}
 .link svg{width:16px;height:16px;transition:transform .3s var(--ease)}
 .link:hover svg{transform:translateX(4px)}
+/* Active link, e.g. "View all services" on a service page */
+.link.on{color:var(--orange)}
+.link.back:hover svg{transform:translateX(-4px)}
 
 /* reveal: content is visible at rest; it only settles */
 
@@ -93,8 +96,16 @@ button{font:inherit;color:inherit;cursor:pointer}
 .hdr{position:fixed;inset:0 0 auto;z-index:80;padding-top:env(safe-area-inset-top,0px);color:#fff;transition:background .35s,color .35s,box-shadow .35s}
 .hdr.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
 .nav{height:80px;display:flex;align-items:center;gap:var(--s-5)}
-.brand{display:block;width:150px;height:41px;color:#fff;flex:none;transition:color .35s}
+.brand{display:block;width:170px;height:41px;color:#fff;flex:none;transition:color .35s}
 .hdr.solid .brand{color:var(--navy)}
+/* Logo box: the built-in SVG or an uploaded image, both fitted without distortion (logo ratio 718:173) */
+.brand-box{position:relative}
+.brand-art{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
+.brand-swap .brand-art{position:absolute;inset:0;transition:opacity .35s}
+.brand-swap .on-dark{color:#fff}
+.brand-swap .on-light{color:var(--navy);opacity:0}
+.hdr.solid .brand-swap .on-dark{opacity:0}
+.hdr.solid .brand-swap .on-light{opacity:1}
 .menu{display:flex;gap:var(--s-4);list-style:none;margin:0 0 0 auto;padding:0}
 .nav{position:relative}
 .menu{align-items:center}
@@ -124,6 +135,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .dd-foot a,.dd-foot button{display:inline-flex;align-items:center;gap:6px;font-weight:600;background:none;border:0;padding:0;font-size:14px}
 .dd-foot button{color:var(--orange)}
 .dd-foot svg{width:14px;height:14px}
+/* "View all services" while a services page is open */
+.dd-foot a.on{background:var(--orange);color:#fff;padding:8px 14px;margin:-8px 0;border-radius:999px;box-shadow:0 8px 20px -14px rgba(252,88,12,.9);transition:background .25s}
+.dd-foot a.on:hover{background:var(--orange-hi)}
 @media(max-width:1000px){.dd{display:none}}
 .nav .btn{padding:11px 20px;font-size:14px}
 .burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;align-items:center;justify-content:center}
@@ -142,6 +156,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .drawer nav .sub a{font-size:16.5px;letter-spacing:0;padding:12px 0 12px 2px;border-bottom:0;display:flex;align-items:center;gap:12px;color:#D5DCEC}
 .drawer nav .sub a svg{width:18px;height:18px;color:var(--orange);flex:none}
 .drawer nav .sub a.all{color:#fff;font-weight:600;padding-bottom:18px}
+.drawer nav .sub a.all.on{color:var(--orange)}
 @media(max-width:1000px){.menu,.nav .btn{display:none}.burger{display:inline-flex}}
 
 /* ===== HERO ===== */
@@ -308,6 +323,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .logos{border-block:1px solid var(--line)}
 .lg{flex:none;width:clamp(200px,16vw,300px);height:128px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);color:var(--ink-3);transition:color .3s}
 .lg:hover{color:var(--navy)}
+/* Client logos: fitted into the same box whatever their shape */
+.lg .lg-img{display:block;width:auto;height:auto;max-width:72%;max-height:68px;object-fit:contain}
 .lg .wm{font-size:24px;font-weight:700;letter-spacing:.02em}
 .lg .wm.alt{font-weight:500;font-size:21px;letter-spacing:-.01em}
 .lg .ph{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:500;color:#AEB4C3}
@@ -431,7 +448,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* ===== FOOTER ===== */
 footer{background:var(--night);color:var(--d-text);border-top:1px solid var(--d-line);padding-top:var(--s-6);font-size:var(--t-small)}
 .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:var(--s-5)}
-.f-grid .brand{width:170px;height:46px;color:#fff}
+.f-grid .brand{width:191px;height:46px;color:#fff}
 .f-grid .about-f{margin-top:var(--s-3);max-width:34ch}
 .socials{display:flex;gap:8px;margin-top:var(--s-3)}
 .socials a{width:38px;height:38px;border-radius:50%;border:1px solid var(--d-line);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .25s,border-color .25s}
@@ -452,7 +469,14 @@ footer ul a:hover{color:#fff}
 .news button{border:0;border-radius:999px;background:var(--orange);color:#fff;width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex:none}
 .news button svg{width:15px;height:15px}
 .news .msg{font-size:13px;margin-top:8px;color:#86E3C0}
-.f-bot{display:flex;justify-content:space-between;gap:var(--s-2);flex-wrap:wrap;margin-top:var(--s-6);padding-block:var(--s-3) calc(var(--s-3) + env(safe-area-inset-bottom,0px));border-top:1px solid var(--d-line);font-size:13px}
+.f-bot{display:flex;justify-content:space-between;align-items:center;gap:var(--s-2);flex-wrap:wrap;margin-top:var(--s-6);padding-block:var(--s-3) calc(var(--s-3) + env(safe-area-inset-bottom,0px));border-top:1px solid var(--d-line);font-size:13px}
+.f-bot .f-end{display:flex;align-items:center;gap:var(--s-3)}
+/* Back to top: same circle as the social icons */
+.to-top{width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--d-line);background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .25s,border-color .25s,transform .35s var(--ease)}
+.to-top svg{width:16px;height:16px}
+.to-top:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
+.to-top:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+@media(max-width:560px){.f-bot{align-items:flex-end}.f-bot .f-end{width:100%;justify-content:space-between}}
 @media(max-width:1000px){.f-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.f-grid{grid-template-columns:1fr}}
 
@@ -543,6 +567,8 @@ footer ul a:hover{color:#fff}
 .cl-quiet .rating b{font-size:28px}
 .logos .lg{filter:grayscale(1);opacity:.75;transition:opacity .3s,filter .3s,color .3s}
 .logos .lg:hover{filter:none;opacity:1}
+/* Touch devices have no hover: show client logos in their own colours */
+@media(hover:none){.logos .lg{filter:none;opacity:1}}
 
 /* ---------- SERVICES: discoverable. A big count anchors the heading ---------- */
 .svc-head{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,3vw,56px);align-items:end;margin-bottom:var(--s-6)}

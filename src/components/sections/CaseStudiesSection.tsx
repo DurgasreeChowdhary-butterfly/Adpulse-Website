@@ -15,7 +15,7 @@ export function CaseStudiesSection({ data, id = 'work', showHead = true }: { dat
       <CaseStudiesTrack
         categories={data.categories}
         items={data.items}
-        labels={{ challenge: s.challengeLabel, solution: s.solutionLabel, sampleNote: s.sampleNote }}
+        labels={{ challenge: s.challengeLabel, solution: s.solutionLabel, sampleNote: s.sampleNote, cardLink: s.cardLinkLabel, sample: s.sampleLabel }}
       />
     </section>
   );

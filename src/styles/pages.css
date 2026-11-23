@@ -53,3 +53,64 @@ form.audit .err{margin:0;font-size:13.5px;color:#C3301A}
 .consent{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink-3)}
 .consent a{color:inherit;text-decoration:underline}
 .consent.dark{margin-top:8px;color:var(--d-text)}
+
+/* ---------- Case studies: list (same card layout as the services) ---------- */
+.cs-list .chips{margin-bottom:var(--s-4)}
+.chips.on-light .chip{border-color:var(--line);background:#fff;color:var(--ink-2)}
+.chips.on-light .chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chips.on-light .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.svc-grid.cs-grid{grid-auto-rows:auto}
+.svc-grid.cs-grid:not(.others){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1000px){.svc-grid.cs-grid:not(.others){grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.svc-grid.cs-grid:not(.others){grid-template-columns:1fr}}
+/* "More case studies": 3 across; on phones it keeps the swipeable row of .svc-grid.others */
+@media(min-width:601px){.svc-grid.cs-grid.others{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ccard h3{max-width:24ch}
+.ccard .art .scene{position:absolute;inset:0;display:block}
+.ccard .art .scene svg{display:block;width:100%;height:100%}
+.ccard .ind-tag{position:absolute;left:12px;top:12px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(6,13,36,.45);border:1px solid rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ccard .cc-res{max-width:34ch}
+.ccard .cc-res b{color:var(--navy);font-weight:600}
+.cs-note{margin-top:var(--s-3);font-size:13px;color:var(--ink-3)}
+.dark .cs-note{color:var(--d-text)}
+/* "Sample project" label, placed directly above the numbers of sample case studies.
+   Scoped selectors override the span rules of .res and .glasscard (which hides spans on phones). */
+.sample-tag,.cv .res .sample-tag,.glasscard .sample-tag,.cs-res-main .sample-tag{display:flex;align-items:center;gap:6px;width:max-content;margin:0 0 10px;padding:5px 10px 5px 8px;border-radius:999px;background:var(--orange);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;line-height:1.2;text-transform:uppercase;white-space:nowrap}
+.sample-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;flex:none}
+.ccard .cc-res .sample-tag{margin:0 auto 8px}
+.glasscard .sample-tag{margin-bottom:8px}
+.cs-res-main .sample-tag{margin-bottom:16px}
+/* homepage slider: link to the detail page */
+.cb .cb-link{align-self:flex-start;color:#fff;font-size:14.5px}
+.cb .cb-link:hover{color:var(--orange)}
+
+/* ---------- Case study detail ---------- */
+.cs-media .scene{position:absolute;inset:0;display:block;background:var(--navy-900)}
+.cs-media .scene svg{display:block;width:100%;height:100%}
+.cs-overview{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s-6);align-items:start}
+.cs-lead{margin-top:var(--s-2);font-size:clamp(19px,1.6vw,24px);line-height:1.5;color:var(--ink);max-width:48ch}
+.cs-facts{margin:0;border-top:1px solid var(--line)}
+.cs-facts>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s-2);padding:16px 0;border-bottom:1px solid var(--line)}
+.cs-facts dt{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.cs-facts dd{margin:0;font-weight:500;display:flex;flex-wrap:wrap;gap:8px}
+.cs-tag{display:inline-flex;padding:5px 12px;border-radius:999px;border:1px solid var(--line);font-size:13.5px;transition:border-color .25s,color .25s}
+.cs-tag:hover{border-color:var(--orange);color:var(--orange)}
+.cs-story{grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}
+.cs-story p,.cs-exec{font-size:var(--t-body);line-height:1.65;color:var(--ink-2)}
+.cs-exec{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.cs-exec li::marker{color:var(--orange);font-weight:600}
+.cs-res-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--s-5);align-items:end}
+.cs-res-main b{display:block;font-size:clamp(64px,7.4vw,128px);font-weight:500;letter-spacing:-.06em;line-height:.9;color:#fff}
+.cs-res-main span{display:block;margin-top:14px;font-size:17px;color:#DCE3F2}
+.cs-mets{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));border-top:1px solid var(--d-line)}
+.cs-mets>div{padding:var(--s-3) var(--s-2) 0 0}
+.cs-mets>div+div{padding-left:var(--s-2);border-left:1px solid var(--d-line)}
+.cs-mets b{display:block;font-size:clamp(26px,2.4vw,36px);font-weight:600;letter-spacing:-.02em;color:#fff}
+.cs-mets small{display:block;font-size:13.5px;line-height:1.4;color:var(--d-text);margin-top:4px}
+.cs-sub{margin-bottom:var(--s-4)}
+.cs-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:var(--s-2)}
+.cs-gallery figure{margin:0;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--mist)}
+.cs-gallery img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:1000px){.cs-story{grid-template-columns:1fr}}
+@media(max-width:900px){.cs-overview{grid-template-columns:1fr;gap:var(--s-4)}.cs-res-grid{grid-template-columns:1fr;gap:var(--s-4)}}
+@media(max-width:480px){.cs-facts>div{grid-template-columns:1fr;gap:6px}.cs-mets{grid-template-columns:1fr 1fr}.cs-mets>div:nth-child(odd){padding-left:0;border-left:0}.cs-mets b{font-size:24px}}

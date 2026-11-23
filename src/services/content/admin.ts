@@ -4,6 +4,7 @@ import { COLLECTION_KEYS, type CollectionKey, type ContentMap } from '@/types/co
 import { activeSource } from './sources';
 import { isListCollection, isSluggedCollection, normalize } from './collections';
 import { ContentValidationError, validateCollection } from './validation';
+import { withDefaults } from './defaults';
 
 export { normalize } from './collections';
 export { ContentValidationError } from './validation';
@@ -30,8 +31,9 @@ export class NotFoundError extends Error {}
 export class BadRequestError extends Error {}
 export class ForbiddenError extends Error {}
 
+/** Same data as the website reads, so newly added fields show up in the admin form (see defaults.ts). */
 export async function readForAdmin<K extends CollectionKey>(key: K): Promise<ContentMap[K]> {
-  return activeSource().read(key);
+  return withDefaults(key, await activeSource().read(key));
 }
 
 function assertWritable() {

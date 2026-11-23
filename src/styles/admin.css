@@ -2,7 +2,7 @@
 .adm{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh;background:var(--mist);color:var(--ink);font-size:14.5px}
 .adm-side{position:sticky;top:0;height:100vh;overflow:auto;background:var(--night);color:#fff;padding:22px 14px;display:flex;flex-direction:column;gap:18px}
 .adm-brand{display:flex;align-items:center;gap:10px;padding:4px 10px 14px;border-bottom:1px solid var(--d-line)}
-.adm-brand .brand{width:120px;height:33px;color:#fff}
+.adm-brand .brand{width:137px;height:33px;color:#fff}
 .adm-brand span{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}
 .adm-nav{display:grid;gap:2px}
 .adm-nav a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;color:var(--d-text);font-weight:500;transition:background .2s,color .2s}
@@ -83,7 +83,7 @@
   .adm-side{position:sticky;top:0;z-index:30;height:auto;overflow:visible;padding:10px 16px;gap:0}
   .adm-bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
   .adm-brand{padding:0;border-bottom:0}
-  .adm-brand .brand{width:104px;height:29px}
+  .adm-brand .brand{width:120px;height:29px}
   .adm-toggle{display:inline-flex;align-items:center;border:1px solid var(--d-line);background:rgba(255,255,255,.06);color:#fff;border-radius:10px;padding:8px 14px;font-weight:600;font-size:14px}
   .adm-drawer{display:none}
   .adm-side[data-open] .adm-drawer{display:grid;gap:16px;padding-top:12px;margin-top:10px;border-top:1px solid var(--d-line);max-height:calc(100dvh - 70px);overflow:auto}
@@ -105,7 +105,7 @@
 .adm-login{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:32px 16px;background:radial-gradient(900px 600px at 85% -10%,rgba(22,62,150,.55),transparent 65%),radial-gradient(700px 500px at 10% 110%,rgba(252,88,12,.16),transparent 65%),var(--night);color:var(--ink);font-size:14.5px}
 .adm-login-box{width:min(400px,100%);display:grid;gap:22px}
 .adm-login-brand{display:flex;align-items:center;justify-content:center;gap:12px;color:#fff}
-.adm-login-brand .brand{width:150px;height:41px}
+.adm-login-brand .brand{width:170px;height:41px}
 .adm-login-brand span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);padding-left:12px;border-left:1px solid var(--d-line)}
 .adm-login-card{background:#fff;border-radius:20px;padding:32px 28px;box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
 .adm-login-card h1{font-size:24px;font-weight:600;letter-spacing:-.02em}
