@@ -63,7 +63,7 @@ export function ContentEditor({ collection, initial, title, description, preview
       setData(json.data);
       setSaved(json.data);
       setDirty(false);
-      setStatus({ text: `Saved at ${new Date().toLocaleTimeString()} · live on the website`, kind: 'ok' });
+      setStatus({ text: `Saved at ${new Date().toLocaleTimeString()} · may take up to a minute to appear on the website`, kind: 'ok' });
     } else {
       const err = await res.json().catch(() => ({}));
       setStatus({ text: err.error || 'Save failed', kind: 'err' });
