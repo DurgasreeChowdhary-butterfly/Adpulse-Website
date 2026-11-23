@@ -135,9 +135,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 .dd-foot a,.dd-foot button{display:inline-flex;align-items:center;gap:6px;font-weight:600;background:none;border:0;padding:0;font-size:14px}
 .dd-foot button{color:var(--orange)}
 .dd-foot svg{width:14px;height:14px}
-/* "View all services" while a services page is open */
-.dd-foot a.on{background:var(--orange);color:#fff;padding:8px 14px;margin:-8px 0;border-radius:999px;box-shadow:0 8px 20px -14px rgba(252,88,12,.9);transition:background .25s}
-.dd-foot a.on:hover{background:var(--orange-hi)}
+/* "View all services": always the prominent orange pill of the dropdown; a soft ring marks it on services pages */
+.dd-foot a{background:var(--orange);color:#fff;padding:9px 16px;margin:-9px 0;border-radius:999px;box-shadow:0 8px 20px -14px rgba(252,88,12,.9);transition:background .25s,transform .3s var(--ease),box-shadow .3s}
+.dd-foot a svg{transition:transform .35s var(--ease)}
+.dd-foot a:hover{background:var(--orange-hi);transform:translateY(-1px);box-shadow:0 14px 26px -16px rgba(252,88,12,.9)}
+.dd-foot a:hover svg{transform:translateX(3px)}
+.dd-foot a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.dd-foot a.on{box-shadow:0 0 0 3px rgba(252,88,12,.22),0 8px 20px -14px rgba(252,88,12,.9)}
 @media(max-width:1000px){.dd{display:none}}
 .nav .btn{padding:11px 20px;font-size:14px}
 .burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;align-items:center;justify-content:center}
@@ -155,8 +159,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .drawer .sub.open{grid-template-rows:1fr}
 .drawer nav .sub a{font-size:16.5px;letter-spacing:0;padding:12px 0 12px 2px;border-bottom:0;display:flex;align-items:center;gap:12px;color:#D5DCEC}
 .drawer nav .sub a svg{width:18px;height:18px;color:var(--orange);flex:none}
-.drawer nav .sub a.all{color:#fff;font-weight:600;padding-bottom:18px}
-.drawer nav .sub a.all.on{color:var(--orange)}
+/* Mobile menu: "View all services" as the same orange pill */
+.drawer nav .sub a.all{width:max-content;margin:8px 0 18px;padding:11px 18px;border-radius:999px;background:var(--orange);color:#fff;font-weight:600;transition:background .25s}
+.drawer nav .sub a.all:hover,.drawer nav .sub a.all:active{background:var(--orange-hi)}
+.drawer nav .sub a.all.on{box-shadow:0 0 0 3px rgba(252,88,12,.3)}
 @media(max-width:1000px){.menu,.nav .btn{display:none}.burger{display:inline-flex}}
 
 /* ===== HERO ===== */
@@ -565,10 +571,8 @@ footer ul a:hover{color:#fff}
 .cl-quiet p{font-size:clamp(17px,1.4vw,20px);color:var(--ink-2);max-width:none}
 .cl-quiet p b{color:var(--ink);font-weight:600}
 .cl-quiet .rating b{font-size:28px}
-.logos .lg{filter:grayscale(1);opacity:.75;transition:opacity .3s,filter .3s,color .3s}
-.logos .lg:hover{filter:none;opacity:1}
-/* Touch devices have no hover: show client logos in their own colours */
-@media(hover:none){.logos .lg{filter:none;opacity:1}}
+/* Client logos always show in their own brand colours */
+.logos .lg{transition:color .3s}
 
 /* ---------- SERVICES: discoverable. A big count anchors the heading ---------- */
 .svc-head{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,3vw,56px);align-items:end;margin-bottom:var(--s-6)}
@@ -769,7 +773,7 @@ footer ul a:hover{color:#fff}
 .ph-media:hover img{transform:scale(1.04)}
 
 /* clients */
-.logos .lg{transition:opacity .4s,filter .4s,color .3s,background .3s}
+.logos .lg{transition:color .3s,background .3s}
 
 /* footer */
 footer ul a{display:inline-block;transition:color .25s,transform .35s var(--ease)}

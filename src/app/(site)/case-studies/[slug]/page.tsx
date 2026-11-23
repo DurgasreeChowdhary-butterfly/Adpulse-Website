@@ -20,7 +20,7 @@ export async function generateMetadata({ params: paramsPromise }: Params): Promi
   const { slug } = await paramsPromise;
   const study = (await getCaseStudies()).find((c) => c.slug === slug);
   if (!study) return {};
-  const summary = study.overview || [study.result.value, study.result.label].filter(Boolean).join(' ') || study.challenge;
+  const summary = study.summary || study.overview || [study.result.value, study.result.label].filter(Boolean).join(' ') || study.challenge;
   const seo = pageSeo(study, study.title, summary);
   return { ...seo, openGraph: { title: seo.title, description: seo.description, images: study.image ? [study.image] : [] } };
 }
@@ -71,9 +71,10 @@ export default async function CaseStudyPage({ params: paramsPromise }: Params) {
         eyebrow={study.industry || content.page.eyebrow}
         title={study.title}
         kinetic="kt-lines"
+        description={study.summary || undefined}
         primaryCta={home.cta.button}
         aside={
-          <figure className="ph-media cs-media">
+          <figure className={`ph-media cs-media${study.image ? ' has-img' : ''}`}>
             {study.image ? (
               <img src={study.image} alt={study.imageAlt} decoding="async" />
             ) : (
@@ -92,7 +93,7 @@ export default async function CaseStudyPage({ params: paramsPromise }: Params) {
 
       {hasOverview && (
         <section className="sec">
-          <div className="wrap cs-overview">
+          <div className={`wrap cs-overview${study.overview ? '' : ' solo'}`}>
             <div className="head rv">
               <span className="eyebrow">{page.overviewTitle}</span>
               {study.overview && <p className="cs-lead">{study.overview}</p>}

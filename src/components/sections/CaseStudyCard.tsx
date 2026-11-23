@@ -3,8 +3,12 @@ import type { CaseStudy } from '@/types/content';
 import { Icon } from '@/components/ui/Icon';
 import { caseScene } from '@/utils/caseScenes';
 
-/** Case study card in the style of the service cards: title, image, headline result, link to the detail page. */
+/**
+ * Case study card in the style of the service cards: title, image, summary (or the headline result
+ * when no summary is set), link to the detail page.
+ */
 export function CaseStudyCard({ study, linkLabel, sampleLabel }: { study: CaseStudy; linkLabel: string; sampleLabel: string }) {
+  const sampleTag = study.isSample && <span className="sample-tag">{sampleLabel}</span>;
   return (
     <Link className="scard ccard" href={`/case-studies/${study.slug}`}>
       <h3>{study.title}</h3>
@@ -16,11 +20,18 @@ export function CaseStudyCard({ study, linkLabel, sampleLabel }: { study: CaseSt
         )}
         {study.industry && <span className="ind-tag">{study.industry}</span>}
       </span>
-      {(study.result.value || study.result.label) && (
-        <p className="cc-res">
-          {study.isSample && <span className="sample-tag">{sampleLabel}</span>}
-          {study.result.value && <b className="num">{study.result.value}</b>} {study.result.label}
+      {study.summary ? (
+        <p className="cc-sum">
+          {sampleTag}
+          {study.summary}
         </p>
+      ) : (
+        (study.result.value || study.result.label) && (
+          <p className="cc-res">
+            {sampleTag}
+            {study.result.value && <b className="num">{study.result.value}</b>} {study.result.label}
+          </p>
+        )
       )}
       <span className="go">
         {linkLabel} <Icon name="i-arrow" />

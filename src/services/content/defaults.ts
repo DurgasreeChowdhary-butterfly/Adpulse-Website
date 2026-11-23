@@ -22,7 +22,7 @@ const COLLECTION_DEFAULTS: Partial<Record<CollectionKey, Json>> = {
     footer: { backToTopLabel: 'Back to top' },
   },
   'case-studies': {
-    section: { cardLinkLabel: 'View case study', sampleLabel: 'Sample project' },
+    section: { cardLinkLabel: 'View case study', sampleLabel: 'Sample project', viewAllLabel: 'View all case studies' },
     detailPage: {
       backLabel: 'All case studies',
       overviewTitle: 'Client overview',
@@ -40,7 +40,7 @@ const COLLECTION_DEFAULTS: Partial<Record<CollectionKey, Json>> = {
 
 /** Defaults for every item of a list collection. */
 const ITEM_DEFAULTS: Partial<Record<CollectionKey, Json>> = {
-  'case-studies': { overview: '', execution: [] },
+  'case-studies': { summary: '', overview: '', execution: [] },
 };
 
 const isObj = (v: unknown): v is Json => !!v && typeof v === 'object' && !Array.isArray(v);

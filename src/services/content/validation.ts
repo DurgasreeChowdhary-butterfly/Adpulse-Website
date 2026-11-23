@@ -52,6 +52,7 @@ export const itemSchemas = {
     category: text,
     services: z.array(text),
     // Optional: content saved before the detail page existed has no such fields (see defaults.ts).
+    summary: text.optional(),
     overview: text.optional(),
     challenge: text,
     solution: text,
@@ -214,7 +215,7 @@ export const schemas: { [K in CollectionKey]: z.ZodTypeAny } = {
     items: z.array(itemSchemas.services).superRefine(uniqueSlugs),
   }),
   'case-studies': obj({
-    section: obj({ eyebrow: text, title: text, description: text, sampleNote: text, challengeLabel: text, solutionLabel: text, cardLinkLabel: text.optional(), sampleLabel: text.optional() }),
+    section: obj({ eyebrow: text, title: text, description: text, sampleNote: text, challengeLabel: text, solutionLabel: text, cardLinkLabel: text.optional(), sampleLabel: text.optional(), viewAllLabel: text.optional() }),
     page: obj({ eyebrow: text, title: text, description: text, ...seo }),
     detailPage: obj({
       backLabel: text,

@@ -63,16 +63,27 @@ form.audit .err{margin:0;font-size:13.5px;color:#C3301A}
 .svc-grid.cs-grid:not(.others){grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:1000px){.svc-grid.cs-grid:not(.others){grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.svc-grid.cs-grid:not(.others){grid-template-columns:1fr}}
+/* Two columns with an odd number of cards: centre the last one instead of leaving it alone on the left */
+@media(min-width:641px) and (max-width:1000px){.svc-grid.cs-grid:not(.others)>.ccard:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc(50% - var(--s-2)/2)}}
 /* "More case studies": 3 across; on phones it keeps the swipeable row of .svc-grid.others */
 @media(min-width:601px){.svc-grid.cs-grid.others{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .ccard h3{max-width:24ch}
 .ccard .art .scene{position:absolute;inset:0;display:block}
 .ccard .art .scene svg{display:block;width:100%;height:100%}
-.ccard .ind-tag{position:absolute;left:12px;top:12px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(6,13,36,.45);border:1px solid rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ccard .ind-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(6,13,36,.45);border:1px solid rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+/* Case study images are usually wide website screenshots: a 2:1 frame from the top keeps the whole page visible */
+.ccard .art.photo{aspect-ratio:2/1}
+.ccard .art.photo img{object-position:center top}
+.ccard .cc-sum{max-width:36ch}
+.cs-media.has-img{aspect-ratio:2/1}
+.cs-media.has-img img{object-position:center top}
 .ccard .cc-res{max-width:34ch}
 .ccard .cc-res b{color:var(--navy);font-weight:600}
 .cs-note{margin-top:var(--s-3);font-size:13px;color:var(--ink-3)}
 .dark .cs-note{color:var(--d-text)}
+/* Homepage case studies: "View all case studies" under the cards */
+.cs-home-foot{display:flex;justify-content:center;margin-top:var(--s-5)}
+.cs-home .cs-note{text-align:center}
 /* "Sample project" label, placed directly above the numbers of sample case studies.
    Scoped selectors override the span rules of .res and .glasscard (which hides spans on phones). */
 .sample-tag,.cv .res .sample-tag,.glasscard .sample-tag,.cs-res-main .sample-tag{display:flex;align-items:center;gap:6px;width:max-content;margin:0 0 10px;padding:5px 10px 5px 8px;border-radius:999px;background:var(--orange);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;line-height:1.2;text-transform:uppercase;white-space:nowrap}
@@ -93,6 +104,10 @@ form.audit .err{margin:0;font-size:13.5px;color:#C3301A}
 .cs-facts>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s-2);padding:16px 0;border-bottom:1px solid var(--line)}
 .cs-facts dt{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
 .cs-facts dd{margin:0;font-weight:500;display:flex;flex-wrap:wrap;gap:8px}
+/* No overview text: the facts sit in one row under the heading instead of leaving an empty column */
+.cs-overview.solo{grid-template-columns:minmax(0,1fr);gap:var(--s-3)}
+.cs-overview.solo .cs-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));column-gap:var(--s-4);border-top:0}
+.cs-overview.solo .cs-facts>div{grid-template-columns:minmax(0,1fr);gap:8px;border-top:1px solid var(--line);border-bottom:0}
 .cs-tag{display:inline-flex;padding:5px 12px;border-radius:999px;border:1px solid var(--line);font-size:13.5px;transition:border-color .25s,color .25s}
 .cs-tag:hover{border-color:var(--orange);color:var(--orange)}
 .cs-story{grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}

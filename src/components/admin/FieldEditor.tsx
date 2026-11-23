@@ -81,6 +81,8 @@ const PATH_HINTS: Record<string, string> = {
   'settings:brand.logo': 'Logo for light backgrounds (header once scrolled). Use a wide logo with a transparent background (SVG or PNG). Empty = built-in logo.',
   'settings:brand.logoOnDark': 'Logo for dark backgrounds (header over the dark page tops, mobile menu, footer). Use a light version. Empty = built-in logo.',
   'clients:items.logo': 'Transparent PNG or SVG works best; it is fitted into the same box as the other logos. Style must be "Logo image".',
+  'case-studies:section.viewAllLabel': 'Button under the homepage case studies, linking to the Case Studies page.',
+  'case-studies:items.summary': 'Short description on the card and under the case study title. Empty = the headline result is shown on the card.',
   'case-studies:items.image': 'Main image on the card and the case study page. Empty = the built-in illustration chosen under Visual.',
 };
 

@@ -207,6 +207,8 @@ export interface CaseStudy extends SeoFields {
   category: string;
   /** Slugs of the services delivered */
   services: string[];
+  /** Short description on the card and under the detail-page title (empty = the headline result is shown on the card) */
+  summary: string;
   /** Short introduction to the client, shown on the detail page (hidden when empty) */
   overview: string;
   challenge: string;
@@ -239,6 +241,8 @@ export interface CaseStudiesContent {
     cardLinkLabel: string;
     /** Label shown next to the numbers of sample case studies */
     sampleLabel: string;
+    /** Homepage section: link to the case studies page */
+    viewAllLabel: string;
   };
   page: { eyebrow: string; title: string; description: string } & SeoFields;
   /** Headings and labels of the case study detail page. Sections without content are hidden. */

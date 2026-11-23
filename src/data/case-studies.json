@@ -7,7 +7,8 @@
     "challengeLabel": "Challenge",
     "solutionLabel": "What we did",
     "cardLinkLabel": "View case study",
-    "sampleLabel": "Sample project"
+    "sampleLabel": "Sample project",
+    "viewAllLabel": "View all case studies"
   },
   "page": {
     "eyebrow": "Case studies",
@@ -48,238 +49,91 @@
   ],
   "items": [
     {
-      "slug": "maritime-college-fills-its-admission-pipeline",
-      "title": "Maritime college fills its admission pipeline",
-      "client": "",
+      "slug": "sri-chakra-maritime-college-website",
+      "title": "Website design for Sri Chakra Maritime College",
+      "summary": "Want to know how Adpulse helped a maritime college generate 1,500+ leads in 60 days?",
+      "client": "Sri Chakra Maritime College",
       "industry": "Education",
-      "category": "pm",
-      "services": [],
+      "category": "web",
+      "services": [
+        "websites-landing-pages"
+      ],
       "overview": "",
-      "challenge": "Lead costs were rising and few enquiries visited campus.",
-      "solution": "Rebuilt search and Meta campaigns around course intent, with instant WhatsApp follow-up.",
+      "challenge": "",
+      "solution": "",
       "execution": [],
       "result": {
         "value": "1,500+",
-        "label": "qualified leads in 60 days"
+        "label": "leads in 60 days"
       },
-      "metrics": [
-        {
-          "value": "−34%",
-          "label": "Cost per lead"
-        },
-        {
-          "value": "22%",
-          "label": "Lead-to-visit"
-        },
-        {
-          "value": "60",
-          "label": "Days"
-        }
-      ],
-      "visual": "bars",
-      "image": null,
-      "imageAlt": "",
+      "metrics": [],
+      "visual": "phone",
+      "image": "/images/case-sri-chakra-maritime-college.jpg",
+      "imageAlt": "Sri Chakra Maritime College website home page",
       "gallery": [],
       "featured": false,
       "showOnHome": true,
       "metaTitle": "",
       "metaDescription": "",
-      "isSample": true
+      "isSample": false
     },
     {
-      "slug": "optical-chain-wins-local-search",
-      "title": "Optical chain wins local search",
+      "slug": "premium-optical-brand-website",
+      "title": "Website design for a premium optical brand",
+      "summary": "How Adpulse helped a premium optical brand drive 270+ walk-ins in just 45 days.",
       "client": "",
       "industry": "Retail · Optical",
-      "category": "seo",
-      "services": [],
+      "category": "web",
+      "services": [
+        "websites-landing-pages"
+      ],
       "overview": "",
-      "challenge": "Six stores were hidden on Google Maps behind bigger chains.",
-      "solution": "Optimised every Google Business Profile, rebuilt location pages and ran a review drive.",
+      "challenge": "",
+      "solution": "",
       "execution": [],
       "result": {
         "value": "270+",
-        "label": "store walk-ins in 45 days"
+        "label": "walk-ins in 45 days"
       },
-      "metrics": [
-        {
-          "value": "Top 3",
-          "label": "Map ranking"
-        },
-        {
-          "value": "+190%",
-          "label": "Direction requests"
-        },
-        {
-          "value": "4.8★",
-          "label": "Avg rating"
-        }
-      ],
-      "visual": "map",
-      "image": null,
-      "imageAlt": "",
-      "gallery": [],
-      "featured": false,
-      "showOnHome": true,
-      "metaTitle": "",
-      "metaDescription": "",
-      "isSample": true
-    },
-    {
-      "slug": "skincare-brand-scales-profitably",
-      "title": "Skincare brand scales profitably",
-      "client": "",
-      "industry": "E-commerce · D2C",
-      "category": "pm",
-      "services": [],
-      "overview": "",
-      "challenge": "Sales had plateaued and each new customer cost more.",
-      "solution": "Moved to Performance Max with a clean product feed and fresh creative every two weeks.",
-      "execution": [],
-      "result": {
-        "value": "4.6x",
-        "label": "return on ad spend"
-      },
-      "metrics": [
-        {
-          "value": "+212%",
-          "label": "Revenue"
-        },
-        {
-          "value": "−21%",
-          "label": "Acquisition cost"
-        },
-        {
-          "value": "2 wks",
-          "label": "Creative cycle"
-        }
-      ],
-      "visual": "line",
-      "image": null,
-      "imageAlt": "",
-      "gallery": [],
-      "featured": false,
-      "showOnHome": true,
-      "metaTitle": "",
-      "metaDescription": "",
-      "isSample": true
-    },
-    {
-      "slug": "saas-startup-builds-a-content-engine",
-      "title": "SaaS startup builds a content engine",
-      "client": "",
-      "industry": "IT & SaaS",
-      "category": "seo",
-      "services": [],
-      "overview": "",
-      "challenge": "Organic search sent almost no demo requests.",
-      "solution": "Keyword clusters, 40 in-depth articles and technical fixes.",
-      "execution": [],
-      "result": {
-        "value": "+340%",
-        "label": "organic traffic in 8 months"
-      },
-      "metrics": [
-        {
-          "value": "1,200+",
-          "label": "Ranking keywords"
-        },
-        {
-          "value": "+85%",
-          "label": "Demo signups"
-        },
-        {
-          "value": "40",
-          "label": "Articles"
-        }
-      ],
-      "visual": "line",
-      "image": null,
-      "imageAlt": "",
-      "gallery": [],
-      "featured": false,
-      "showOnHome": true,
-      "metaTitle": "",
-      "metaDescription": "",
-      "isSample": true
-    },
-    {
-      "slug": "developer-rebuilds-for-mobile-buyers",
-      "title": "Developer rebuilds for mobile buyers",
-      "client": "",
-      "industry": "Real Estate",
-      "category": "web",
-      "services": [],
-      "overview": "",
-      "challenge": "Most visitors were on phones, and the old site lost them.",
-      "solution": "A mobile-first site with project pages, tour links and a two-step enquiry form.",
-      "execution": [],
-      "result": {
-        "value": "3.1x",
-        "label": "more website enquiries"
-      },
-      "metrics": [
-        {
-          "value": "1.4s",
-          "label": "Load time"
-        },
-        {
-          "value": "+62%",
-          "label": "Form completion"
-        },
-        {
-          "value": "−31%",
-          "label": "Bounce rate"
-        }
-      ],
+      "metrics": [],
       "visual": "phone",
-      "image": null,
-      "imageAlt": "",
+      "image": "/images/case-premium-optical-brand.jpg",
+      "imageAlt": "Premium optical brand website home page",
       "gallery": [],
       "featured": false,
       "showOnHome": true,
       "metaTitle": "",
       "metaDescription": "",
-      "isSample": true
+      "isSample": false
     },
     {
-      "slug": "clinic-moves-bookings-online",
-      "title": "Clinic moves bookings online",
-      "client": "",
-      "industry": "Healthcare",
+      "slug": "kapleshwar-optics-website",
+      "title": "Website design for Kapleshwar Optics",
+      "summary": "Want to know how Adpulse drove 470+ walk-ins for premium optical stores in Chennai?",
+      "client": "Kapleshwar Optics",
+      "industry": "Retail · Optical",
       "category": "web",
-      "services": [],
+      "services": [
+        "websites-landing-pages"
+      ],
       "overview": "",
-      "challenge": "Appointments came only by phone, and peak-hour calls were missed.",
-      "solution": "Doctor profiles, online booking and local SEO pages for every department.",
+      "challenge": "",
+      "solution": "",
       "execution": [],
       "result": {
-        "value": "+58%",
-        "label": "online appointment bookings"
+        "value": "470+",
+        "label": "walk-ins"
       },
-      "metrics": [
-        {
-          "value": "+44%",
-          "label": "Calls from site"
-        },
-        {
-          "value": "−31%",
-          "label": "Bounce rate"
-        },
-        {
-          "value": "12",
-          "label": "Departments"
-        }
-      ],
-      "visual": "bars",
-      "image": null,
-      "imageAlt": "",
+      "metrics": [],
+      "visual": "phone",
+      "image": "/images/case-kapleshwar-optics.jpg",
+      "imageAlt": "Kapleshwar Optics website home page",
       "gallery": [],
       "featured": false,
       "showOnHome": true,
       "metaTitle": "",
       "metaDescription": "",
-      "isSample": true
+      "isSample": false
     }
   ]
 }
